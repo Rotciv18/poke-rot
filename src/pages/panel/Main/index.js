@@ -14,10 +14,10 @@ class Main extends Component {
   }
 
   getPokemons() {
-    const { auth, getPokemonsRequest, pokemons } = this.props;
+    const { auth, getPokemonsRequest } = this.props;
 
-    if (auth && !pokemons) {
-      getPokemonsRequest(auth.token);
+    if (auth) {
+      getPokemonsRequest();
     } else {
       setTimeout(() => this.getPokemons(), 200);
     }
@@ -33,7 +33,7 @@ class Main extends Component {
           <Container>
             <Row className="p-4 d-flex justify-content-between" >
               {pokemons.map(pokemon => (
-                <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                <PokemonCard key={pokemon.id} pokemon={pokemon} history={this.props.history}/>
               ))}
             </Row>
           </Container>

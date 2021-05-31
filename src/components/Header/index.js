@@ -31,8 +31,7 @@ class Header extends Component {
   render() {
     return (
       <Container>
-        <Nav variant="tabs" defaultActiveKey="#/" justify
-          onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
+        <Nav variant="tabs" defaultActiveKey="#/" justify>
 
           <Nav.Item>
             <Nav.Link href="#/">Pokémons</Nav.Link>
