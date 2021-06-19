@@ -2,6 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 import Authentication from '../../util/Authentication/Authentication';
 
 import { Types as AuthTypes, Creators as AuthActions } from '../ducks/twitchAuth';
+import { Creators as UserActions } from '../ducks/user';
 
 function* getAuth(action) {
   const { twitchExtension } = action;
@@ -13,6 +14,7 @@ function* getAuth(action) {
   localStorage.setItem('token', action.token);
 
   yield put(AuthActions.getAuthSuccess(auth));
+  yield put(UserActions.getUserRequest());
 }
 
 export default function* () {

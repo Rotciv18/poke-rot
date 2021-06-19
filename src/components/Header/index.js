@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
-import { Container } from './styles';
+import { Container, PokeRotContainer } from './styles';
+
+import capitalize from '../../helpers/capitalize';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -29,30 +31,44 @@ class Header extends Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
-      <Container>
-        <Nav variant="tabs" defaultActiveKey="#/" justify>
+      <>
+        <PokeRotContainer>
+          <div>
+            <h5>Poke-Rot</h5>
+            {user ? <span>{capitalize(user.username)}</span> : ''}
+          </div>
 
-          <Nav.Item>
-            <Nav.Link href="#/">Pokémons</Nav.Link>
-          </Nav.Item>
+          {user ? <span>Poke-Points: {user.points}</span> : ''}
+        </PokeRotContainer>
 
-          <Nav.Item>
-            <Nav.Link href="#/battles">Batalhas</Nav.Link>
-          </Nav.Item>
+        <Container>
+          <Nav variant="tabs" defaultActiveKey="#/" justify>
 
-          <Nav.Item>
-            <Nav.Link href="#/test">Ginásios</Nav.Link>
-          </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="#/">Pokémons</Nav.Link>
+            </Nav.Item>
 
-        </Nav>
-      </Container>
+            <Nav.Item>
+              <Nav.Link href="#/battles">Batalhas</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link href="#/test">Ginásios</Nav.Link>
+            </Nav.Item>
+
+          </Nav>
+        </Container>
+      </>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
   auth: state.twitchAuth.auth,
+  user: state.user.user,
+  isUserLoading: state.user.isLoading
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(AuthActions, dispatch);

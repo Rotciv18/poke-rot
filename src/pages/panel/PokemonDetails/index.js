@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, LoadingContainer } from './style';
 import { Spinner, Button, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import MoveTable from './components/MoveTable';
+import WarningMessage from "./components/WarningMessage";
 
 import capitalize from '../../../helpers/capitalize';
 
@@ -58,27 +59,27 @@ class PokemonDetails extends Component {
           </Button>}
 
           {levelUpData.newLevel
-            ? <h4>{`Seu ${capitalize(pokemon.name)} avançou para o level ${levelUpData.newLevel}!`}</h4>
+            ? <WarningMessage message={`Seu ${capitalize(pokemon.name)} avançou para o level ${levelUpData.newLevel}!`}></WarningMessage>
             : null}
 
           {levelUpData.evolvedTo
-            ? <h4>{`Seu ${capitalize(levelUpData.previousPokemon)} evoluiu para um ${capitalize(levelUpData.evolvedTo)}!`}</h4>
+            ? <WarningMessage message={`Seu ${capitalize(levelUpData.previousPokemon)} evoluiu para um ${capitalize(levelUpData.evolvedTo)}!`}></WarningMessage>
             : null}
 
           {levelUpData.learnedMove
-            ? <h4>{`${capitalize(pokemon.name)} aprendeu ${levelUpData.learnedMove}!`}</h4>
+            ? <WarningMessage message={`${capitalize(pokemon.name)} aprendeu ${levelUpData.learnedMove}!`}></WarningMessage>
             : null}
 
           {levelUpError.noPoints
-            ? <h4>{`Você não tem pontos o suficiente para um level up.`}</h4>
+            ? <WarningMessage message={`Você não tem pontos o suficiente para um level up.`}></WarningMessage>
             : null}
 
           {levelUpError.forgetToLearn ?
             <>
-              <p className="font-weight-bold text-center mr-2 ml-2">{capitalize(pokemon.name)} está tentando aprender {capitalize(levelUpError.forgetToLearn)},
-            mas não pode aprender mais de 4 habilidades. Deseja esquecer alguma para aprender?</p>
+              <WarningMessage color='red' message={`${capitalize(pokemon.name)} está tentando aprender ${capitalize(levelUpError.forgetToLearn)},
+            mas não pode aprender mais de 4 habilidades. Deseja esquecer alguma para aprender?`}></WarningMessage>
 
-            <Button onClick={() => this.handleForgetMove('none')} size="sm">Não Esquecer</Button>
+            <Button onClick={() => this.handleForgetMove('none')} size="sm">Não aprender {levelUpError.forgetToLearn}</Button>
 
             </>
             : null}

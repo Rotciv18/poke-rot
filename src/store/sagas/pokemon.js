@@ -2,6 +2,7 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import twitchPokemonApi from '../../services/twitchPokemonApi';
 
 import { Types as PokemonTypes, Creators as PokemonActions } from '../ducks/pokemon';
+import { Creators as UserActions } from '../ducks/user';
 
 function* getPokemon(action) {
   const url = `api/users/pokemons/${action.pokemonId}`;
@@ -22,6 +23,7 @@ function* levelUpPokemon(action) {
     console.log(response.data);
 
     yield put(PokemonActions.levelUpPokemonSuccess(response.data));
+    yield put(UserActions.getUserRequest());
 
   } catch (error) {
     switch (error.response.data.message) {
