@@ -20,8 +20,6 @@ function* levelUpPokemon(action) {
   try {
     const response = yield call(twitchPokemonApi.post, url);
 
-    console.log(response.data);
-
     yield put(PokemonActions.levelUpPokemonSuccess(response.data));
     yield put(UserActions.getUserRequest());
 
@@ -36,7 +34,6 @@ function* levelUpPokemon(action) {
         break;
     
       default:
-        console.log(error.response.data.message);
         break;
     }
   }

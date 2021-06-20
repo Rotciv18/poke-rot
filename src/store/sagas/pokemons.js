@@ -3,9 +3,10 @@ import twitchPokemonApi from '../../services/twitchPokemonApi';
 
 import { Types as PokemonsTypes, Creators as PokemonsActions } from '../ducks/pokemons';
 
-function* getPokemons() {
+function* getPokemons(action) {
   try {
-    const response = yield call(twitchPokemonApi.get, 'api/users/pokemons');
+    const endpoint = `api/users/pokemons${action.params ? action.params : ''}`;
+    const response = yield call(twitchPokemonApi.get, endpoint);
 
     yield put(PokemonsActions.getPokemonsSuccess(response.data));
   } catch (error) {

@@ -25,7 +25,6 @@ class PokemonDetails extends Component {
   }
 
   handleForgetMove = (move) => {
-    console.log(move);
     const { levelUpPokemonRequest, pokemon } = this.props;
 
     levelUpPokemonRequest(pokemon.id, move);

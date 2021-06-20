@@ -11,4 +11,15 @@ export const PokeRotContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      font-weight: bold;
+      cursor: pointer;
+      color: #0000ff;
+    }
+  }
 `;

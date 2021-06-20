@@ -36,7 +36,7 @@ class Header extends Component {
       <>
         <PokeRotContainer>
           <div>
-            <h5>Poke-Rot</h5>
+            <a href="#/">Poke-Rot</a>
             {user ? <span>{capitalize(user.username)}</span> : ''}
           </div>
 
@@ -44,7 +44,7 @@ class Header extends Component {
         </PokeRotContainer>
 
         <Container>
-          <Nav variant="tabs" defaultActiveKey="#/" justify>
+          <Nav fill variant="tabs" defaultActiveKey="#/" justify>
 
             <Nav.Item>
               <Nav.Link href="#/">Pokémons</Nav.Link>
@@ -56,6 +56,10 @@ class Header extends Component {
 
             <Nav.Item>
               <Nav.Link href="#/test">Ginásios</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link href="#/setup">Setup</Nav.Link>
             </Nav.Item>
 
           </Nav>
