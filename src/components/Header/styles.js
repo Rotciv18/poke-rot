@@ -10,7 +10,11 @@ export const PokeRotContainer = styled.div`
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
 
   div {
     display: flex;

@@ -8,6 +8,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as AuthActions } from '../../store/ducks/twitchAuth';
 
+const pokePointsImg = "https://www.pngfind.com/pngs/b/102-1028650_pokemon-logo-png.png";
+const pokeballImg = "https://www.clipartmax.com/png/full/129-1298222_%C2%A0-pokeball-png.png";
+const greatballImg = "https://i.pinimg.com/originals/0f/ec/7a/0fec7a6bec3984714aa33478b5d2f6ec.png";
+const ultraballImg = "https://www.pinclipart.com/picdir/big/84-843046_pokeball-clip-art.png";
+const duelTicketImg = "https://www.clipartmax.com/png/full/91-918286_rectangle-clipart.png";
+const badgeImg = "https://www.pikpng.com/pngl/b/31-313648_boulder-png.png";
+
 class Header extends Component {
 
   componentDidMount() {
@@ -40,7 +47,29 @@ class Header extends Component {
             {user ? <span>{capitalize(user.username)}</span> : ''}
           </div>
 
-          {user ? <span>Poke-Points: {user.points}</span> : ''}
+
+          {user ?
+            <div>
+              <div className="d-flex flex-row align-items-center text-right">
+                <img title="PokePoints" src={pokePointsImg}></img>
+                <span className="ml-1">{user.points}</span>
+                <img title="Duel Tickets" className="ml-4" src={duelTicketImg}></img>
+                <span className="ml-1">{user.duel_tickets}</span>
+                <img title="Badges" className="ml-4" src={badgeImg}></img>
+                <span className="ml-1">{user.badges}</span>
+              </div>
+              <div className="d-flex flex-row align-items-center">
+                <img title="Pokeballs" src={pokeballImg}></img>
+                <span className="ml-1">{user.pokeballs}</span>
+                <img title="Great Balls" className="ml-4" src={greatballImg}></img>
+                <span className="ml-1">{user.great_balls}</span>
+                <img title="Ultra Balls" className="ml-4" src={ultraballImg}></img>
+                <span className="ml-1">{user.ultra_balls}</span>
+              </div>
+            </div>
+            : ''}
+
+
         </PokeRotContainer>
 
         <Container>
