@@ -7,6 +7,7 @@ import TestPage from '../pages/panel/TestPage';
 import AnotherTest from '../pages/panel/AnotherTest';
 import Setup from '../pages/panel/Setup';
 import AddToSetup from '../pages/panel/AddToSetup';
+import Battles from '../pages/panel/Battles';
 
 export default function Routes() {
   return (
@@ -17,6 +18,7 @@ export default function Routes() {
       <Route path="/another_test" render={(props) => (<AnotherTest {...props} Twitch={window.Twitch ? window.Twitch.ext : null} />)} />
       <Route path="/setup" exact component={Setup} />
       <Route path="/setup/new" component={AddToSetup} />
+      <Route path="/battles" exact component={Battles} />
     </Switch>
   )
 }

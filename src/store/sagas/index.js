@@ -5,6 +5,7 @@ import pokemons from './pokemons';
 import pokemon from './pokemon';
 import user from './user';
 import setup from './setup';
+import battles from './battles';
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     twitchAuth(),
     user(),
     setup(),
+    battles(),
   ]);
 }

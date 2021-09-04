@@ -5,6 +5,7 @@ import pokemons from './pokemons';
 import pokemon from './pokemon';
 import user from './user';
 import setup from './setup';
+import battles from './battles';
 
 export default combineReducers({
   pokemons,
@@ -12,4 +13,5 @@ export default combineReducers({
   twitchAuth,
   user,
   setup,
+  battles,
 });
