@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: #000022;
+  background-color: #444444;
+  
+  .navLink {
+    color: #FFF;
+  }
 `;
 
 export const PokeRotContainer = styled.div`

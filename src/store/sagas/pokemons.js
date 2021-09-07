@@ -14,8 +14,6 @@ function* getPokemons(action) {
   }
 }
 
-
-
 export default function* () {
   yield takeLatest(PokemonsTypes.GET_POKEMONS_REQUEST, getPokemons);
 }

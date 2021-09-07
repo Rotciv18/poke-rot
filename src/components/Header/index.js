@@ -76,19 +76,19 @@ class Header extends Component {
           <Nav fill variant="tabs" defaultActiveKey="#/" justify>
 
             <Nav.Item>
-              <Nav.Link href="#/">Pokémons</Nav.Link>
+              <Nav.Link className="navLink" href="#/">Pokémons</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#/battles">Batalhas</Nav.Link>
+              <Nav.Link className="navLink" href="#/battles">Batalhas</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#/test">Ginásios</Nav.Link>
+              <Nav.Link className="navLink" href="#/test">Ginásios</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#/setup">Setup</Nav.Link>
+              <Nav.Link className="navLink" href="#/setup">Setup</Nav.Link>
             </Nav.Item>
 
           </Nav>
