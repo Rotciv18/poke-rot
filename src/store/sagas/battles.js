@@ -52,9 +52,23 @@ function* scheduleBattle(action) {
   }
 }
 
+function* sendBattleInvitation(action) {
+  try {
+    const response = yield call(twitchPokemonApi.post, battleInvitationsEndpoint, {
+      challenged_id: action.challenged_id,
+      challenge_type: action.challenge_type,
+      challenger_available_dates: action.challenger_available_dates
+    });
+    console.log(response);
 
+    action.history.push('/battles');
+  } catch (error) {
+    console.log({error});
+  }
+}
 
 export default function* () {
   yield takeLatest(BattlesTypes.GET_USER_BATTLES_REQUEST, getBattles);
   yield takeLatest(BattlesTypes.SCHEDULE_BATTLE_REQUEST, scheduleBattle);
+  yield takeLatest(BattlesTypes.SEND_BATTLE_INVITATION_REQUEST, sendBattleInvitation);
 }

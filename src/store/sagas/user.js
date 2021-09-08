@@ -5,15 +5,13 @@ import { Types as UserTypes, Creators as UserActions } from '../ducks/user';
 
 function* getUser() {
   try {
-    const response = yield call(twitchPokemonApi.get, 'api/users');
+    const response = yield call(twitchPokemonApi.get, 'api/users/me');
 
     yield put(UserActions.getUserSuccess(response.data));
   } catch (error) {
     yield put(UserActions.getUserFailure());
   }
 }
-
-
 
 export default function* () {
   yield takeLatest(UserTypes.GET_USER_REQUEST, getUser);

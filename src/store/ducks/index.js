@@ -6,6 +6,7 @@ import pokemon from './pokemon';
 import user from './user';
 import setup from './setup';
 import battles from './battles';
+import availableBattles from './availableBattles';
 
 export default combineReducers({
   pokemons,
@@ -14,4 +15,5 @@ export default combineReducers({
   user,
   setup,
   battles,
+  availableBattles,
 });
