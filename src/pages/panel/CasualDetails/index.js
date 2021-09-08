@@ -20,7 +20,8 @@ class CasualDetails extends Component {
 
   state = {
     dates: [],
-    lowDatesError: false
+    lowDatesError: false,
+    noTicketError: false
   }
 
   onCalendarChange(value) {
@@ -31,11 +32,20 @@ class CasualDetails extends Component {
 
   handleInviteBattleClick() {
     const params = new URLSearchParams(this.props.location.search);
-    const { history } = this.props;
+    const { history, user } = this.props;
     const { dates } = this.state;
     if (dates.length < 3) {
       this.setState({
+        noTicketError: false,
         lowDatesError: true
+      });
+      return;
+    }
+
+    if (user.duel_tickets < 1) {
+      this.setState({
+        noTicketError: true,
+        lowDatesError: false
       });
       return;
     }
@@ -53,16 +63,27 @@ class CasualDetails extends Component {
 
   render() {
     const params = new URLSearchParams(this.props.location.search);
-    const { lowDatesError } = this.state;
+    const { lowDatesError, noTicketError } = this.state;
 
     return (
       <Container>
         <span>Marcar uma batalha contra {capitalize(params.get('username'))}</span>
         <span>Você irá gastar 1 <span className="text-warning">Duel Ticket</span></span>
         <hr className="w-100"></hr>
+
+        {!lowDatesError && !noTicketError
+          ? <p className="text-center">Escolha pelo menos 3 dias para disponibilizar a escolha à seu adversário</p>
+          : null}
+
         {lowDatesError
           ? <p className="text-center text-danger">Você deve escolher pelo menos 3 dias!</p>
-          : <p className="text-center">Escolha pelo menos 3 dias para disponibilizar a escolha à seu adversário</p>}
+          : null}
+
+        {noTicketError
+          ? <p className="text-center text-danger">Você não tem Duel Tickets suficiente!</p>
+          : null}
+
+
         <Calendar locale={calendarPtLocale} multiple onChange={(value) => this.onCalendarChange(value)} minDate={minDate} maxDate={maxDate} />
 
         <Button onClick={() => this.handleInviteBattleClick()} variant="outline-primary"><CheckSquare size="28px" /></Button>
@@ -73,6 +94,7 @@ class CasualDetails extends Component {
 
 const mapStateToProps = (state) => ({
   isLoading: state.battles.isLoading,
+  user: state.user.user
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(BattlesActions, dispatch);

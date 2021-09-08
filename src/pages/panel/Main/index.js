@@ -5,6 +5,7 @@ import { Container, LoadingContainer } from './style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as PokemonsActions } from '../../../store/ducks/pokemons';
+import { Creators as UserActions } from '../../../store/ducks/user';
 import PokemonCard from './components/PokemonCard';
 
 class Main extends Component {
@@ -14,10 +15,11 @@ class Main extends Component {
   }
 
   getPokemons() {
-    const { auth, getPokemonsRequest } = this.props;
+    const { auth, getPokemonsRequest, getUserRequest } = this.props;
 
     if (auth) {
       getPokemonsRequest();
+      getUserRequest();
     } else {
       setTimeout(() => this.getPokemons(), 200);
     }
@@ -33,7 +35,7 @@ class Main extends Component {
           <Container>
             <Row className="p-4 d-flex justify-content-between" >
               {pokemons.map(pokemon => (
-                <PokemonCard key={pokemon.id} pokemon={pokemon} history={this.props.history}/>
+                <PokemonCard key={pokemon.id} pokemon={pokemon} history={this.props.history} />
               ))}
             </Row>
           </Container>
@@ -54,6 +56,6 @@ const mapStateToProps = (state) => ({
   auth: state.twitchAuth.auth,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(PokemonsActions, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ ...PokemonsActions, ...UserActions }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -2,6 +2,7 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import twitchPokemonApi from '../../services/twitchPokemonApi';
 
 import { Types as BattlesTypes, Creators as BattlesActions } from '../ducks/battles';
+import { Creators as UserActions } from '../ducks/user';
 
 const battleInvitationsEndpoint = 'api/users/battles/invitations';
 const sentInvitationsEndpoint = 'api/users/battles/invitations/sent';
@@ -61,6 +62,7 @@ function* sendBattleInvitation(action) {
     });
     console.log(response);
 
+    yield put(UserActions.getUserRequest());
     action.history.push('/battles');
   } catch (error) {
     console.log({error});
