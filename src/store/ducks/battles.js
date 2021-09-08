@@ -8,6 +8,7 @@ export const { Types, Creators } = createActions({
 
 const INITIAL_STATE = {
   battleInvitations: null,
+  sentInvitations: null,
   battleSchedules: null,
   allSchedules: null,
   isLoading: true
@@ -23,7 +24,8 @@ const getUserBattlesSuccess = (state = INITIAL_STATE, action) => ({
   isLoading: false,
   battleInvitations: action.battles.battleInvitations,
   battleSchedules: action.battles.battleSchedules,
-  allSchedules: action.battles.allSchedules
+  allSchedules: action.battles.allSchedules,
+  sentInvitations: action.battles.sentInvitations
 });
 
 const scheduleBattleRequest = (state = INITIAL_STATE) => ({

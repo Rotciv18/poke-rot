@@ -2,7 +2,9 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import twitchPokemonApi from '../../services/twitchPokemonApi';
 
 import { Types as BattlesTypes, Creators as BattlesActions } from '../ducks/battles';
+
 const battleInvitationsEndpoint = 'api/users/battles/invitations';
+const sentInvitationsEndpoint = 'api/users/battles/invitations/sent';
 const battleSchedulesEndpoint = 'api/users/battles/schedules';
 const allSchedulesEndpoint = 'api/battles/schedules';
 
@@ -10,12 +12,14 @@ function* getBattles(action) {
   try {
     const invitationsResponse = yield call(twitchPokemonApi.get, battleInvitationsEndpoint);
     const schedulesResponse = yield call(twitchPokemonApi.get, battleSchedulesEndpoint);
-    const allSchedulesResponse = yield call(twitchPokemonApi.get, battleSchedulesEndpoint);
+    const allSchedulesResponse = yield call(twitchPokemonApi.get, allSchedulesEndpoint);
+    const sentInvitationsResponse = yield call(twitchPokemonApi.get, sentInvitationsEndpoint);
 
     yield put(BattlesActions.getUserBattlesSuccess({
       battleInvitations: invitationsResponse.data,
       battleSchedules: schedulesResponse.data,
-      allSchedules: allSchedulesResponse.data
+      allSchedules: allSchedulesResponse.data,
+      sentInvitations: sentInvitationsResponse.data
     }));
   } catch (error) {
     console.log(error);

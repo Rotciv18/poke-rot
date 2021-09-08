@@ -10,7 +10,7 @@ import positionNameString from '../../../../../helpers/positionNameString';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-class BattleInvitations extends Component {
+class BattleInvitation extends Component {
 
   state = {
     open: false,
@@ -45,7 +45,7 @@ class BattleInvitations extends Component {
     const { open, selectedDate } = this.state;
     const { invitation, user } = this.props;
     return (<Container>
-      <Table striped bordered hover variant="dark">
+      <Table striped bordered hover size="sm" variant="dark">
         <thead>
           <tr>
             <th>Desafiante</th>
@@ -67,6 +67,7 @@ class BattleInvitations extends Component {
       {user.id === invitation.challenged.id ? (<>
         <Collapse in={open} className="pl-2 pr-2">
           <div>
+            <span className="smallMessage ml-3">Selecione um horário para aceitar a batalha!</span>
             <Row xs={3} md={3} lg={3}>
               {invitation.challenger_available_dates.map((date, index) => (
                 <Col key={index} className="mt-2">
@@ -78,7 +79,7 @@ class BattleInvitations extends Component {
             </Row>
             <Row xs={1} md={1} lg={1} className="mt-4 mb-2">
               <Col className="scheduleButton">
-                <Button onClick={() => this.scheduleBattle()}>Marcar Batalha!</Button>
+                <Button onClick={() => this.scheduleBattle()} disabled={!selectedDate ? true : false}>Marcar Batalha!</Button>
               </Col>
             </Row>
           </div>
@@ -91,4 +92,4 @@ class BattleInvitations extends Component {
   }
 }
 
-export default BattleInvitations;
+export default BattleInvitation;
