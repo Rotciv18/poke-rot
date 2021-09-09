@@ -7,6 +7,7 @@ import user from './user';
 import setup from './setup';
 import battles from './battles';
 import availableBattles from './availableBattles';
+import positions from './positions';
 
 export default function* rootSaga() {
   yield all([
@@ -17,5 +18,6 @@ export default function* rootSaga() {
     setup(),
     battles(),
     availableBattles(),
+    positions(),
   ]);
 }

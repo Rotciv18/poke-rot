@@ -94,7 +94,7 @@ class Header extends Component {
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link active={ref === '#/test'} onClick={() => this.changeRef("#/test")} className="navLink" href="#/test">Ginásios</Nav.Link>
+              <Nav.Link active={ref === '#/test'} onClick={() => this.changeRef("#/test")} className="navLink" href="#/gyms">Ginásios</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
