@@ -42,7 +42,8 @@ class CasualDetails extends Component {
       return;
     }
 
-    if (user.duel_tickets < 1) {
+    const hasTickets = params.get('challenge_type') === 'casual' ? user.duel_tickets : user.badges;
+    if (!hasTickets) {
       this.setState({
         noTicketError: true,
         lowDatesError: false
@@ -56,8 +57,9 @@ class CasualDetails extends Component {
     sendBattleInvitationRequest(
       history,
       params.get('id'),
-      'casual',
-      toDate
+      params.get('challenge_type'),
+      toDate,
+      params.get('position_id')
     );
   }
 
@@ -68,7 +70,8 @@ class CasualDetails extends Component {
     return (
       <Container>
         <span>Marcar uma batalha contra {capitalize(params.get('username'))}</span>
-        <span>Você irá gastar 1 <span className="text-warning">Duel Ticket</span></span>
+        <span>Você irá gastar 1 <span className="text-warning">
+          {params.get('challenge_type') === 'casual' ? 'Duel Ticket' : 'Badge'}</span></span>
         <hr className="w-100"></hr>
 
         {!lowDatesError && !noTicketError
@@ -80,7 +83,7 @@ class CasualDetails extends Component {
           : null}
 
         {noTicketError
-          ? <p className="text-center text-danger">Você não tem Duel Tickets suficiente!</p>
+          ? <p className="text-center text-danger">Você não tem {params.get('challenge_type') === 'casual' ? 'Duel Ticket' : 'Badge'}s suficiente!</p>
           : null}
 
 

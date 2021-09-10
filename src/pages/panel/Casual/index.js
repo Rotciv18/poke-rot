@@ -57,7 +57,7 @@ class Casual extends Component {
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={capitalize(user.username)} />
                 <ListItemSecondaryAction>
-                  <Button href={`#/casual/details?id=${user.id}&username=${user.username}`} >Batalhar</Button>
+                  <Button href={`#/casual/details?id=${user.id}&username=${user.username}&challenge_type=casual`} >Batalhar</Button>
                 </ListItemSecondaryAction>
               </ListItem>
             );

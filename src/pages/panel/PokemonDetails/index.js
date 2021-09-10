@@ -54,8 +54,8 @@ class PokemonDetails extends Component {
                 role="status"
                 aria-hidden="true"
               />
-            Level Up
-          </Button>}
+              Level Up
+            </Button>}
 
           {levelUpData.newLevel
             ? <WarningMessage message={`Seu ${capitalize(pokemon.name)} avançou para o level ${levelUpData.newLevel}!`}></WarningMessage>
@@ -70,17 +70,21 @@ class PokemonDetails extends Component {
             : null}
 
           {levelUpError.noPoints
-            ? <WarningMessage message={`Você não tem pontos o suficiente para um level up.`}></WarningMessage>
+            ? <WarningMessage color='red' bold={true} message={`Você não tem pontos o suficiente para um level up.`}></WarningMessage>
             : null}
 
           {levelUpError.forgetToLearn ?
             <>
-              <WarningMessage color='red' message={`${capitalize(pokemon.name)} está tentando aprender ${capitalize(levelUpError.forgetToLearn)},
+              <WarningMessage color='orange' bold={true} message={`${capitalize(pokemon.name)} está tentando aprender ${capitalize(levelUpError.forgetToLearn)},
             mas não pode aprender mais de 4 habilidades. Deseja esquecer alguma para aprender?`}></WarningMessage>
 
-            <Button onClick={() => this.handleForgetMove('none')} size="sm">Não aprender {levelUpError.forgetToLearn}</Button>
+              <Button onClick={() => this.handleForgetMove('none')} size="sm">Não aprender {levelUpError.forgetToLearn}</Button>
 
             </>
+            : null}
+
+          {levelUpError.pokemonInPosition
+            ? <WarningMessage color='red' bold={true} className="font-bold" message={`Você não pode subir level de um pokemon que está em um ginásio!`}></WarningMessage>
             : null}
 
         </Container>

@@ -37,19 +37,14 @@ function* scheduleBattle(action) {
     );
 
     if (scheduleBattleResponse.status === 200) {
-      const invitationsResponse = yield call(twitchPokemonApi.get, battleInvitationsEndpoint);
-      const schedulesResponse = yield call(twitchPokemonApi.get, battleSchedulesEndpoint);
 
-      yield put(BattlesActions.getUserBattlesSuccess({
-        battleInvitations: invitationsResponse.data,
-        battleSchedules: schedulesResponse.data,
-      }));
+      yield put(BattlesActions.getUserBattlesRequest());
     } else {
       console.log(scheduleBattleResponse);
     }
 
   } catch (error) {
-    console.log({error});
+    console.log({ error });
   }
 }
 
@@ -58,14 +53,15 @@ function* sendBattleInvitation(action) {
     const response = yield call(twitchPokemonApi.post, battleInvitationsEndpoint, {
       challenged_id: action.challenged_id,
       challenge_type: action.challenge_type,
-      challenger_available_dates: action.challenger_available_dates
+      challenger_available_dates: action.challenger_available_dates,
+      position_id: action.position_id
     });
     console.log(response);
 
     yield put(UserActions.getUserRequest());
     action.history.push('/battles');
   } catch (error) {
-    console.log({error});
+    console.log({ error });
   }
 }
 

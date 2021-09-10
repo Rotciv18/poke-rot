@@ -24,15 +24,20 @@ function* levelUpPokemon(action) {
     yield put(UserActions.getUserRequest());
 
   } catch (error) {
+    console.log({ error });
     switch (error.response.data.message) {
       case 'Not enough points':
-        yield put(PokemonActions.levelUpPokemonFailure({noPoints: true}));
+        yield put(PokemonActions.levelUpPokemonFailure({ noPoints: true }));
         break;
 
       case 'Need to choose a move to delete':
-        yield put(PokemonActions.levelUpPokemonFailure({forgetToLearn: error.response.data.newMove.name}));
+        const newMove = error.response.data.newMove ? error.response.data.newMove.name : error.response.data.newEvolutionMove.name;
+        yield put(PokemonActions.levelUpPokemonFailure({ forgetToLearn: newMove }));
         break;
-    
+
+      case "Can't level up pokemon that's in position Setup":
+        yield put(PokemonActions.levelUpPokemonFailure({ pokemonInPosition: true }));
+
       default:
         break;
     }

@@ -59,7 +59,7 @@ class Gym extends Component {
                 </SetupContainer>
                 {position.user && position.user.id !== user.id
                   ? <Button
-                    href={`#/casual/details?id=${user.id}&username=${user.username}&position_id=${position.id}`}
+                    href={`#/casual/details?id=${position.user.id}&username=${position.user.username}&challenge_type=position&position_id=${position.id}`}
                     size="sm">Desafiar</Button>
                   : null}
                 {!position.user ? <Button onClick={() => console.log(positions)} size="sm">Tomar</Button> : null}
