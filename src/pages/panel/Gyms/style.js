@@ -10,6 +10,10 @@ export const Container = styled.div`
 
     background-color: #F5F5F5;
   }
+
+  .button-tooltip {
+    width: 100%;
+  }
 `;
 
 export const SetupContainer = styled.div`

@@ -61,7 +61,7 @@ class Setup extends Component {
 
 const mapStateToProps = (state) => ({
   pokemons: state.setup.pokemonList,
-  isLoading: state.setup.isLoading,
+  isLoading: state.setup.isLoading
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(SetupActions, dispatch);

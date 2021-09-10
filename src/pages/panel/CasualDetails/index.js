@@ -54,12 +54,14 @@ class CasualDetails extends Component {
     const toDate = dates.map(dt => new Date(`${dt.year}-${dt.month}-${dt.day}`));
 
     const { sendBattleInvitationRequest } = this.props;
+    const position_id = params.get('position_id') ? params.get('position_id') : undefined;
+
     sendBattleInvitationRequest(
       history,
       params.get('id'),
       params.get('challenge_type'),
       toDate,
-      params.get('position_id')
+      position_id
     );
   }
 
