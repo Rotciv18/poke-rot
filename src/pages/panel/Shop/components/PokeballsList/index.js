@@ -90,7 +90,7 @@ class PokeballsList extends Component {
   }
 
   handleBuyButton() {
-    const { user, buyPokeballsRequest, history } = this.props;
+    const { user, buyPokeballsRequest } = this.props;
     const { pokeballs, greatballs, ultraballs, cost } = this.state;
 
     if (user.points < cost) {
@@ -100,7 +100,7 @@ class PokeballsList extends Component {
       return;
     }
 
-    buyPokeballsRequest(history, pokeballs, greatballs, ultraballs);
+    buyPokeballsRequest(pokeballs, greatballs, ultraballs);
     this.setState({
       pokeballs: 0,
       greatballs: 0,

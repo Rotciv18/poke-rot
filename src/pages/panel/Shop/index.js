@@ -84,7 +84,7 @@ class Shop extends Component {
           </StyledMenuItem>
         </StyledMenu>
 
-        { selectedMenu === 'Pokeballs' ? <PokeballsList history={this.props.history}/> : null }
+        { selectedMenu === 'Pokeballs' ? <PokeballsList /> : null }
         { selectedMenu === 'TMs e HMs' ? <TmList /> : null }
         { selectedMenu === 'Stones' ? <StonesList /> : null }
       </Container>

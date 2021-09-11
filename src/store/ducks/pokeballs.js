@@ -1,7 +1,7 @@
 import { createActions, createReducer } from 'reduxsauce';
 
 export const { Types, Creators } = createActions({
-  buyPokeballsRequest: ['history', 'pokeballs', 'greatballs', 'ultraballs'],
+  buyPokeballsRequest: ['pokeballs', 'greatballs', 'ultraballs'],
   buyPokeballsSuccess: [],
 });
 
