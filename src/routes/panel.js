@@ -9,6 +9,7 @@ import Battles from '../pages/panel/Battles';
 import Casual from '../pages/panel/Casual';
 import CasualDetails from '../pages/panel/CasualDetails';
 import Gyms from '../pages/panel/Gyms';
+import Shop from '../pages/panel/Shop';
 
 export default function Routes() {
   return (
@@ -22,6 +23,7 @@ export default function Routes() {
       <Route path="/casual" exact component={Casual} />
       <Route path="/casual/details" exact component={CasualDetails} />
       <Route path="/gyms" exact component={Gyms} />
+      <Route path="/shop" exact component={Shop} />
     </Switch>
   )
 }

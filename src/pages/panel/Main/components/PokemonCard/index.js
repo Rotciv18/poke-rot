@@ -11,7 +11,7 @@ export default class PokemonCard extends Component {
 
   render() {
     const { pokemon } = this.props;
-    return (<Card style={{ width: '90px', marginBottom: '12px', cursor: 'pointer' }}
+    return (<Card style={{ width: '90px', marginBottom: '12px', cursor: 'pointer', padding: '0px' }}
       onClick={() => this.handlePokemonClick(pokemon.id)}>
       <img src={pokemon.pokemon_data.sprite}></img>
       <span className="text-center">{capitalize(pokemon.name)}</span>

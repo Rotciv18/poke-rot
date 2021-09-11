@@ -4,7 +4,7 @@ export const Container = styled.div`
   overflow-x: hidden;
 
   img {
-    height: 70px;
+    height: 90px;
   }
 
   div:hover {

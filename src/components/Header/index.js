@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+import Pokeball from '../../images/pokeball.png';
+import Greatball from '../../images/greatball.png';
+import Ultraball from '../../images/ultraball.png';
 import { Nav } from 'react-bootstrap';
 import { Container, PokeRotContainer } from './styles';
 
@@ -9,9 +13,6 @@ import { connect } from 'react-redux';
 import { Creators as AuthActions } from '../../store/ducks/twitchAuth';
 
 const pokePointsImg = "https://www.pngfind.com/pngs/b/102-1028650_pokemon-logo-png.png";
-const pokeballImg = "https://www.clipartmax.com/png/full/129-1298222_%C2%A0-pokeball-png.png";
-const greatballImg = "https://i.pinimg.com/originals/0f/ec/7a/0fec7a6bec3984714aa33478b5d2f6ec.png";
-const ultraballImg = "https://www.pinclipart.com/picdir/big/84-843046_pokeball-clip-art.png";
 const duelTicketImg = "https://www.clipartmax.com/png/full/91-918286_rectangle-clipart.png";
 const badgeImg = "https://www.pikpng.com/pngl/b/31-313648_boulder-png.png";
 
@@ -70,11 +71,11 @@ class Header extends Component {
                 <span className="ml-1">{user.badges}</span>
               </div>
               <div className="d-flex flex-row align-items-center">
-                <img title="Pokeballs" src={pokeballImg}></img>
+                <img title="Pokeballs" src={Pokeball}></img>
                 <span className="ml-1">{user.pokeballs}</span>
-                <img title="Great Balls" className="ml-4" src={greatballImg}></img>
+                <img title="Great Balls" className="ml-4" src={Greatball}></img>
                 <span className="ml-1">{user.great_balls}</span>
-                <img title="Ultra Balls" className="ml-4" src={ultraballImg}></img>
+                <img title="Ultra Balls" className="ml-4" src={Ultraball}></img>
                 <span className="ml-1">{user.ultra_balls}</span>
               </div>
             </div>
@@ -103,6 +104,10 @@ class Header extends Component {
 
             <Nav.Item>
               <Nav.Link active={ref === '#/casual'} onClick={() => this.changeRef("#/casual")} className="navLink" href="#/casual">Casual</Nav.Link>
+            </Nav.Item>
+            
+            <Nav.Item>
+              <Nav.Link active={ref === '#/shop'} onClick={() => this.changeRef("#/shop")} className="navLink" href="#/shop">Shop</Nav.Link>
             </Nav.Item>
 
           </Nav>
