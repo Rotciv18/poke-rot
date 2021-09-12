@@ -21,26 +21,21 @@ const pokePointsImg =
 
 class PokeballsList extends Component {
   state = {
-    pokeballList: [],
     pokeballs: 0,
     greatballs: 0,
     ultraballs: 0,
     cost: 0,
     noPointsError: false,
-    loading: true,
   };
 
   componentDidMount() {
-    this.fetchPokeballs();
+    this.getPokeballsList();
   }
 
-  fetchPokeballs = async () => {
-    const response = await twitchPokemonApi.get('/api/pokeballs');
-
-    this.setState({
-      pokeballList: response.data,
-      loading: false,
-    });
+  getPokeballsList = async () => {
+    const { getPokeballsListRequest } = this.props;
+    
+    getPokeballsListRequest();
   };
 
   handleAddClick(value) {
@@ -62,8 +57,8 @@ class PokeballsList extends Component {
   }
 
   updateCost() {
-    const { pokeballList } = this.state;
-    const cost = pokeballList.reduce((previous, current) => {
+    const { pokeballsList } = this.props;
+    const cost = pokeballsList.reduce((previous, current) => {
       return previous.price
         ? previous.price * this.state[previous.name] +
         current.price * this.state[current.name]
@@ -109,16 +104,16 @@ class PokeballsList extends Component {
   }
 
   render() {
-    const { cost, noPointsError, pokeballList, loading } = this.state;
-    const { isPokeballsLoading } = this.props;
-    return loading || isPokeballsLoading ? (
+    const { cost, noPointsError } = this.state;
+    const { isPokeballsLoading, pokeballsList } = this.props;
+    return isPokeballsLoading ? (
       <LoadingContainer className='d-flex justify-content-center align-items-center'>
         <Spinner animation='border' role='status' />
       </LoadingContainer>
     ) : (
       <Container>
         <Row className='p-4 d-flex justify-content-between'>
-          {pokeballList.map((pokeball) => (
+          {pokeballsList.map((pokeball) => (
             <div
               key={pokeball.id}
               style={{
@@ -212,6 +207,7 @@ const mapDispatchToProps = (dispatch) =>
 
 const mapStateToProps = (state) => ({
   user: state.user.user,
+  pokeballsList: state.pokeballs.pokeballsList,
   isPokeballsLoading: state.pokeballs.isLoading,
 });
 
