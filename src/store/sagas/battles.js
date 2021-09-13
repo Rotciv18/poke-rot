@@ -56,7 +56,6 @@ function* sendBattleInvitation(action) {
       challenger_available_dates: action.challenger_available_dates,
       position_id: action.position_id
     });
-    console.log(response);
 
     yield put(UserActions.getUserRequest());
     action.history.push('/battles');

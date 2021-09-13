@@ -24,7 +24,12 @@ function* levelUpPokemon(action) {
     yield put(UserActions.getUserRequest());
 
   } catch (error) {
-    console.log({ error });
+
+    if (error.response.data.hasOne) {
+      yield put(PokemonActions.levelUpPokemonFailure({ hasOne: error.response.data.hasOne }));
+      return;
+    }
+
     switch (error.response.data.message) {
       case 'Not enough points':
         yield put(PokemonActions.levelUpPokemonFailure({ noPoints: true }));
@@ -37,6 +42,7 @@ function* levelUpPokemon(action) {
 
       case "Can't level up pokemon that's in position Setup":
         yield put(PokemonActions.levelUpPokemonFailure({ pokemonInPosition: true }));
+        break;
 
       default:
         break;
@@ -44,7 +50,37 @@ function* levelUpPokemon(action) {
   }
 }
 
+function* evolvePokemon(action) {
+  const url = `api/users/pokemons/${action.pokemonId}/stones/${action.stoneId}${action.params ? action.params : ''}`;
+  try {
+    const response = yield call(twitchPokemonApi.post, url);
+
+    action.history.push(`/pokemon/${action.pokemonId}`);
+    yield put(PokemonActions.evolvePokemonSuccess());
+  } catch (error) {
+    if (error.response.data.hasOne) {
+      yield put(PokemonActions.evolvePokemonFailure({ hasOne: error.response.data.hasOne }));
+      return;
+    }
+
+    switch (error.response.data.message) {
+      case 'Not enough points':
+        yield put(PokemonActions.evolvePokemonFailure({ noPoints: true }));
+        break;
+
+      case 'Need to choose a move to delete':
+        const newMove = error.response.data.newMove ? error.response.data.newMove.name : error.response.data.newEvolutionMove.name;
+        yield put(PokemonActions.evolvePokemonFailure({ forgetToLearn: newMove }));
+        break;
+
+      default:
+        console.log({ error });
+    }
+  }
+}
+
 export default function* () {
   yield takeLatest(PokemonTypes.GET_POKEMON_REQUEST, getPokemon);
   yield takeLatest(PokemonTypes.LEVEL_UP_POKEMON_REQUEST, levelUpPokemon);
+  yield takeLatest(PokemonTypes.EVOLVE_POKEMON_REQUEST, evolvePokemon);
 }

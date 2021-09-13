@@ -7,6 +7,10 @@ export const { Types, Creators } = createActions({
   levelUpPokemonRequest: ['pokemonId', 'deleteMove'],
   levelUpPokemonSuccess: ['levelUpData'],
   levelUpPokemonFailure: ['error'],
+  evolvePokemonRequest: ['pokemonId', 'stoneId', 'params', 'history'],
+  evolvePokemonSuccess: [],
+  evolvePokemonFailure: ['error'],
+  cleanEvolveError: []
 });
 
 const INITIAL_STATE = {
@@ -16,6 +20,7 @@ const INITIAL_STATE = {
   error: false,
   levelUpData: {},
   levelUpError: {},
+  evolveError: {}
 };
 
 const getPokemonRequest = (state = INITIAL_STATE) => ({
@@ -56,6 +61,27 @@ const levelUpPokemonFailure = (state = INITIAL_STATE, action) => ({
   levelUpError: action.error
 });
 
+const evolvePokemonRequest = (state = INITIAL_STATE) => ({
+  ...state,
+  isLoading: true
+});
+
+const evolvePokemonSuccess = (state = INITIAL_STATE) => ({
+  ...state,
+  isLoading: false
+});
+
+const evolvePokemonFailure = (state = INITIAL_STATE, action) => ({
+  ...state,
+  isLoading: false,
+  evolveError: action.error
+});
+
+const cleanEvolveError = (state = INITIAL_STATE) => ({
+  ...state,
+  evolveError: {}
+});
+
 export default createReducer(INITIAL_STATE, {
   [Types.GET_POKEMON_REQUEST]: getPokemonRequest,
   [Types.GET_POKEMON_SUCCESS]: getPokemonSuccess,
@@ -63,4 +89,8 @@ export default createReducer(INITIAL_STATE, {
   [Types.LEVEL_UP_POKEMON_REQUEST]: levelUpPokemonRequest,
   [Types.LEVEL_UP_POKEMON_SUCCESS]: levelUpPokemonSuccess,
   [Types.LEVEL_UP_POKEMON_FAILURE]: levelUpPokemonFailure,
+  [Types.EVOLVE_POKEMON_REQUEST]: evolvePokemonRequest,
+  [Types.EVOLVE_POKEMON_SUCCESS]: evolvePokemonSuccess,
+  [Types.EVOLVE_POKEMON_FAILURE]: evolvePokemonFailure,
+  [Types.CLEAN_EVOLVE_ERROR]: cleanEvolveError,
 });

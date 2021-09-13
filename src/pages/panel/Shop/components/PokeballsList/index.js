@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import twitchPokemonApi from '../../../../../services/twitchPokemonApi';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +7,7 @@ import { Creators as PokeballsActions } from '../../../../../store/ducks/pokebal
 import Pokeball from '../../../../../images/pokeball.png';
 import Greatball from '../../../../../images/greatball.png';
 import Ultraball from '../../../../../images/ultraball.png';
+import PokePoints from '../../../../../images/pokepoints.png';
 
 import { Spinner } from 'react-bootstrap';
 import { LoadingContainer } from '../../../Main/style';
@@ -15,9 +15,6 @@ import { Row, Card, Button } from 'react-bootstrap';
 import { IconButton } from '@material-ui/core';
 import { Remove, Add } from '@material-ui/icons';
 import { Container } from './style';
-
-const pokePointsImg =
-  'https://www.pngfind.com/pngs/b/102-1028650_pokemon-logo-png.png';
 
 class PokeballsList extends Component {
   state = {
@@ -34,7 +31,7 @@ class PokeballsList extends Component {
 
   getPokeballsList = async () => {
     const { getPokeballsListRequest } = this.props;
-    
+
     getPokeballsListRequest();
   };
 
@@ -147,7 +144,7 @@ class PokeballsList extends Component {
                   <img
                     className='pokePoints'
                     title='PokePoints'
-                    src={pokePointsImg}
+                    src={PokePoints}
                   ></img>
                   <span className='ml-1'>{pokeball.price}</span>
                 </div>
@@ -192,12 +189,12 @@ class PokeballsList extends Component {
             </span>
           ) : (
             <div className='mt-1 d-flex align-items-center'>
-              <img className='pokePoints mr-1' src={pokePointsImg} />
+              <img className='pokePoints mr-1' src={PokePoints} />
               <span>Total: {cost}</span>
             </div>
           )}
         </div>
-      </Container>
+      </Container >
     );
   }
 }

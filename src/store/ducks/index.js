@@ -9,6 +9,7 @@ import battles from './battles';
 import availableBattles from './availableBattles';
 import positions from './positions';
 import pokeballs from './pokeballs';
+import stones from './stones';
 
 export default combineReducers({
   pokemons,
@@ -20,4 +21,5 @@ export default combineReducers({
   availableBattles,
   positions,
   pokeballs,
+  stones,
 });

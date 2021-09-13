@@ -12,8 +12,6 @@ import StonesList from './components/StonesList';
 
 import { Container } from './style';
 
-const pokePointsImg =
-  'https://www.pngfind.com/pngs/b/102-1028650_pokemon-logo-png.png';
 const pokeballImg =
   'https://www.clipartmax.com/png/full/129-1298222_%C2%A0-pokeball-png.png';
 const tmImg = 'https://pokemon3d.net/wiki/images/7/7a/TMbig.png';
@@ -40,16 +38,17 @@ class Shop extends Component {
   handleSelectMenu(label) {
     this.setState({
       selectedMenu: label,
-      anchorEl: null
+      anchorEl: null,
     });
   }
 
   render() {
     const { anchorEl, selectedMenu } = this.state;
+    const { history } = this.props;
     return (
       <Container>
         <Button
-          className="mb-4 mt-2"
+          className='mb-4 mt-2'
           aria-controls='customized-menu'
           aria-haspopup='true'
           onClick={(event) => this.handleMenuClick(event)}
@@ -84,9 +83,9 @@ class Shop extends Component {
           </StyledMenuItem>
         </StyledMenu>
 
-        { selectedMenu === 'Pokeballs' ? <PokeballsList /> : null }
-        { selectedMenu === 'TMs e HMs' ? <TmList /> : null }
-        { selectedMenu === 'Stones' ? <StonesList /> : null }
+        {selectedMenu === 'Pokeballs' ? <PokeballsList /> : null}
+        {selectedMenu === 'TMs e HMs' ? <TmList /> : null}
+        {selectedMenu === 'Stones' ? <StonesList history={history} /> : null}
       </Container>
     );
   }

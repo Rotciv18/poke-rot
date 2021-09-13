@@ -10,6 +10,7 @@ import Casual from '../pages/panel/Casual';
 import CasualDetails from '../pages/panel/CasualDetails';
 import Gyms from '../pages/panel/Gyms';
 import Shop from '../pages/panel/Shop';
+import EvolvePokemon from '../pages/panel/EvolvePokemon';
 
 export default function Routes() {
   return (
@@ -24,6 +25,7 @@ export default function Routes() {
       <Route path="/casual/details" exact component={CasualDetails} />
       <Route path="/gyms" exact component={Gyms} />
       <Route path="/shop" exact component={Shop} />
+      <Route path="/pokemons/evolve" exact component={EvolvePokemon} />
     </Switch>
   )
 }
