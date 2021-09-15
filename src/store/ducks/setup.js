@@ -5,14 +5,16 @@ export const { Types, Creators } = createActions({
   getSetupSuccess: ['pokemons'],
   getSetupFailure: [],
   removeFromSetupRequest: ['pokemonId'],
-  removeFromSetupFailure: [],
+  removeFromSetupFailure: ['error'],
   addToSetupRequest: ['pokemonId', 'history'],
-  addToSetupFailure: [],
+  addToSetupFailure: ['error'],
+  cleanSetupError: [],
 });
 
 const INITIAL_STATE = {
   pokemonList: null,
   isLoading: true,
+  setupError: {}
 };
 
 const getSetupRequest = (state = INITIAL_STATE) => ({
@@ -36,9 +38,10 @@ const removeFromSetupRequest = (state = INITIAL_STATE) => ({
   isLoading: true,
 });
 
-const removeFromSetupFailure = (state = INITIAL_STATE) => ({
+const removeFromSetupFailure = (state = INITIAL_STATE, action) => ({
   ...state,
   isLoading: false,
+  setupError: action.error,
 });
 
 const addToSetupRequest = (state = INITIAL_STATE) => ({
@@ -46,9 +49,15 @@ const addToSetupRequest = (state = INITIAL_STATE) => ({
   isLoading: true,
 });
 
-const addToSetupFailure = (state = INITIAL_STATE) => ({
+const addToSetupFailure = (state = INITIAL_STATE, action) => ({
   ...state,
   isLoading: false,
+  setupError: action.error,
+});
+
+const cleanSetupError = (state = INITIAL_STATE) => ({
+  ...state,
+  setupError: {}
 });
 
 export default createReducer(INITIAL_STATE, {
@@ -59,4 +68,5 @@ export default createReducer(INITIAL_STATE, {
   [Types.REMOVE_FROM_SETUP_FAILURE]: removeFromSetupFailure,
   [Types.ADD_TO_SETUP_REQUEST]: addToSetupRequest,
   [Types.ADD_TO_SETUP_FAILURE]: addToSetupFailure,
+  [Types.CLEAN_SETUP_ERROR]: cleanSetupError,
 });

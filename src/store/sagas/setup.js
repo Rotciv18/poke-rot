@@ -19,7 +19,12 @@ function* removeFromSetup(action) {
 
     yield put(SetupActions.getSetupRequest());
   } catch (error) {
-    yield put(SetupActions.removeFromSetupFailure());
+    if (error.response.data.hasOne) {
+      yield put(SetupActions.removeFromSetupFailure({ hasOne: error.response.data.hasOne }));
+    } else {
+      yield put(SetupActions.removeFromSetupFailure());
+      console.log({ error });
+    }
   }
 }
 
@@ -30,7 +35,12 @@ function* addToSetup(action) {
     yield put(SetupActions.getSetupRequest());
     action.history.push('/setup');
   } catch (error) {
-    yield put(SetupActions.addToSetupFailure());
+    if (error.response.data.hasOne) {
+      yield put(SetupActions.addToSetupFailure({ hasOne: error.response.data.hasOne }));
+    } else {
+      yield put(SetupActions.addToSetupFailure());
+      console.log({ error });
+    }
   }
 }
 
