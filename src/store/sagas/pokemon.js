@@ -79,8 +79,48 @@ function* evolvePokemon(action) {
   }
 }
 
+function* learnMove(action) {
+  try {
+    const params = action.params ? action.params : '';
+    const url = `api/users/pokemons/${action.pokemonId}/learn_move?moveId=${action.moveId}${params}`;
+
+    const response = yield call(twitchPokemonApi.post, url);
+
+    action.history.push(`/pokemon/${action.pokemonId}`);
+    yield put(PokemonActions.learnMoveSuccess());
+  } catch (error) {
+    if (error.response.data.hasOne) {
+      yield put(PokemonActions.learnMoveFailure({ hasOne: error.response.data.hasOne }));
+      return;
+    }
+
+    switch (error.response.data.message) {
+      case 'Not enough points':
+        yield put(PokemonActions.learnMoveFailure({ noPoints: true }));
+        break;
+
+      case 'Need to choose a move to delete':
+        const newMove = error.response.data.newMove.name;
+        yield put(PokemonActions.learnMoveFailure({ forgetToLearn: newMove }));
+        break;
+
+      case 'Pokemon already learned this move':
+        yield put(PokemonActions.learnMoveFailure({ alreadyLearned: true }));
+        break;
+
+      case "Pokemon can't learn this move":
+        yield put(PokemonActions.learnMoveFailure({ cantLearn: true }));
+        break;
+
+      default:
+        console.log({ error });
+    }
+  }
+}
+
 export default function* () {
   yield takeLatest(PokemonTypes.GET_POKEMON_REQUEST, getPokemon);
   yield takeLatest(PokemonTypes.LEVEL_UP_POKEMON_REQUEST, levelUpPokemon);
   yield takeLatest(PokemonTypes.EVOLVE_POKEMON_REQUEST, evolvePokemon);
+  yield takeLatest(PokemonTypes.LEARN_MOVE_REQUEST, learnMove);
 }

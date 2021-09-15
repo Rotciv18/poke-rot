@@ -10,6 +10,7 @@ import availableBattles from './availableBattles';
 import positions from './positions';
 import pokeballs from './pokeballs';
 import stones from './stones';
+import moves from './moves';
 
 export default function* rootSaga() {
   yield all([
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     positions(),
     pokeballs(),
     stones(),
+    moves(),
   ]);
 }

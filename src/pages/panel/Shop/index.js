@@ -48,7 +48,7 @@ class Shop extends Component {
     return (
       <Container>
         <Button
-          className='mb-4 mt-2'
+          className='mt-2'
           aria-controls='customized-menu'
           aria-haspopup='true'
           onClick={(event) => this.handleMenuClick(event)}
@@ -84,7 +84,7 @@ class Shop extends Component {
         </StyledMenu>
 
         {selectedMenu === 'Pokeballs' ? <PokeballsList /> : null}
-        {selectedMenu === 'TMs e HMs' ? <TmList /> : null}
+        {selectedMenu === 'TMs e HMs' ? <TmList history={history} /> : null}
         {selectedMenu === 'Stones' ? <StonesList history={history} /> : null}
       </Container>
     );

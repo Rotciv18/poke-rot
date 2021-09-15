@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as PokeballsActions } from '../../../../../store/ducks/pokeballs';
+import capitalize from '../../../../../helpers/capitalize';
 
 import Pokeball from '../../../../../images/pokeball.png';
 import Greatball from '../../../../../images/greatball.png';
@@ -139,7 +140,7 @@ class PokeballsList extends Component {
                   className='itemImg'
                   src={this.pokeballImage(pokeball.name)}
                 ></img>
-                <span className='text-center'>{pokeball.name}</span>
+                <span className='text-center'>{capitalize(pokeball.name)}</span>
                 <div className='d-flex align-items-center'>
                   <img
                     className='pokePoints'
