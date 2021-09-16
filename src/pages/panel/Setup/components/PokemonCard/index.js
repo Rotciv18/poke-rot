@@ -10,7 +10,7 @@ export default class PokemonCard extends Component {
     const { pokemon, handleRemovePokemonClick } = this.props;
     return (
       <Card className="d-flex align-items-center"
-        style={{ width: '75px', marginBottom: '12px' }}>
+        style={{ width: '90px', marginBottom: '12px' }}>
         <img style={{ width: '60px' }} src={pokemon.pokemon_data.sprite}></img>
         <span>{capitalize(pokemon.name)}</span>
         <span>Lv. {pokemon.level}</span>

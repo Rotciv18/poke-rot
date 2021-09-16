@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  border: 1px solid black;
   border-radius: 8px;
+  margin: 0px 12px 0 12px;
 
-  margin: 24px 12px 0 12px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
   .hover:hover {
     transition: 0.3s;
@@ -14,5 +17,9 @@ export const Container = styled.div`
       transition: 0.3s;
       background-color: #0044ff;
     }
+  }
+
+  .code {
+    white-space: pre-wrap;
   }
 `;

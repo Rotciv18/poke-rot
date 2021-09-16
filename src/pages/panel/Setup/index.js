@@ -1,16 +1,22 @@
 import React, { Component } from 'React';
 
-import { Spinner, Row, Card } from 'react-bootstrap';
+import { Spinner, Row, Card, Button, Col } from 'react-bootstrap';
 import { PlusSquare } from 'react-bootstrap-icons';
 import PokemonCard from './components/PokemonCard';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as SetupActions } from '../../../store/ducks/setup';
+import generatePokemonShowdownCode from '../../../helpers/generatePokemonShowdownCode';
 
 import { Container } from './style';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 class Setup extends Component {
+  state = {
+    generateCode: null,
+  };
+
   componentDidMount() {
     this.getSetup();
   }
@@ -50,8 +56,17 @@ class Setup extends Component {
     removeFromSetupRequest(pokemonId);
   };
 
+  handleGenerateCode() {
+    this.setState({
+      generateCode: !this.state.generateCode,
+    });
+  }
+
+  mizera = (pokemons) => {};
+
   render() {
     const { isLoading, pokemons, setupError } = this.props;
+    const { generateCode } = this.state;
     const indexes = [0, 1, 2, 3, 4, 5];
 
     return isLoading ? (
@@ -69,7 +84,7 @@ class Setup extends Component {
             {this.hasOneString(setupError.hasOne)}
           </h5>
         ) : null}
-        <Row className='p-4 d-flex justify-content-between'>
+        <Row className='p-2 d-flex justify-content-between'>
           {indexes.map((i) =>
             pokemons[i] ? (
               <PokemonCard
@@ -83,7 +98,7 @@ class Setup extends Component {
                 key={i}
                 className='d-flex align-items-center justify-content-center hover'
                 style={{
-                  width: '75px',
+                  width: '90px',
                   height: '140px',
                   marginBottom: '12px',
                   cursor: 'pointer',
@@ -97,6 +112,14 @@ class Setup extends Component {
             )
           )}
         </Row>
+        <CopyToClipboard text={generatePokemonShowdownCode(pokemons).replace(',', '')}>
+          <Button
+            size='sm'
+            className='w-75'
+          >
+            Copiar Código de Pokemon Showdown
+          </Button>
+        </CopyToClipboard>
       </Container>
     );
   }
