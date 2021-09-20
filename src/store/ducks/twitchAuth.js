@@ -8,6 +8,7 @@ export const { Types, Creators } = createActions({
 
 const INITIAL_STATE = {
   auth: null,
+  error: false,
   isLoading: false
 };
 
@@ -19,11 +20,13 @@ const getAuthRequest = (state = INITIAL_STATE) => ({
 const getAuthSuccess = (state = INITIAL_STATE, action) => ({
   ...state,
   auth: action.auth.state,
+  error: false,
   isLoading: false
 });
 
 const getAuthFailure = (state = INITIAL_STATE) => ({
   ...state,
+  error: true,
   isLoading: false
 });
 

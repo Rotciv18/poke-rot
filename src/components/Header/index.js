@@ -49,122 +49,135 @@ class Header extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, error } = this.props;
     const { ref } = this.state;
-    return (
-      <>
-        <PokeRotContainer>
-          <div>
-            <a onClick={() => this.changeRef('#/')} href='#/'>
-              Poke-Rot
-            </a>
-            {user ? <span>{capitalize(user.username)}</span> : ''}
-          </div>
-
-          {user ? (
+    if (!error) {
+      return (
+        <>
+          <PokeRotContainer>
             <div>
-              <div className='d-flex flex-row align-items-center text-right'>
-                <img title='PokePoints' src={PokePoints}></img>
-                <span className='ml-1'>{user.points}</span>
-                <img
-                  title='Duel Tickets'
-                  className='ml-4'
-                  src={duelTicketImg}
-                ></img>
-                <span className='ml-1'>{user.duel_tickets}</span>
-                <img title='Badges' className='ml-4' src={badgeImg}></img>
-                <span className='ml-1'>{user.badges}</span>
-              </div>
-              <div className='d-flex flex-row align-items-center'>
-                <img title='Pokeballs' src={Pokeball}></img>
-                <span className='ml-1'>{user.pokeballs}</span>
-                <img title='Great Balls' className='ml-4' src={Greatball}></img>
-                <span className='ml-1'>{user.great_balls}</span>
-                <img title='Ultra Balls' className='ml-4' src={Ultraball}></img>
-                <span className='ml-1'>{user.ultra_balls}</span>
-              </div>
+              <a onClick={() => this.changeRef('#/')} href='#/'>
+                Poke-Rot
+              </a>
+              {user ? <span>{capitalize(user.username)}</span> : ''}
             </div>
-          ) : (
-            ''
-          )}
-        </PokeRotContainer>
 
-        <Container>
-          <Nav fill variant='tabs' defaultActiveKey='#/' justify>
-            <Nav.Item>
-              <Nav.Link
-                active={ref === '#/'}
-                onClick={() => this.changeRef('#/')}
-                className='navLink'
-                href='#/'
-              >
-                Pokémons
-              </Nav.Link>
-            </Nav.Item>
+            {user ? (
+              <div>
+                <div className='d-flex flex-row align-items-center text-right'>
+                  <img title='PokePoints' src={PokePoints}></img>
+                  <span className='ml-1'>{user.points}</span>
+                  <img
+                    title='Duel Tickets'
+                    className='ml-4'
+                    src={duelTicketImg}
+                  ></img>
+                  <span className='ml-1'>{user.duel_tickets}</span>
+                  <img title='Badges' className='ml-4' src={badgeImg}></img>
+                  <span className='ml-1'>{user.badges}</span>
+                </div>
+                <div className='d-flex flex-row align-items-center'>
+                  <img title='Pokeballs' src={Pokeball}></img>
+                  <span className='ml-1'>{user.pokeballs}</span>
+                  <img
+                    title='Great Balls'
+                    className='ml-4'
+                    src={Greatball}
+                  ></img>
+                  <span className='ml-1'>{user.great_balls}</span>
+                  <img
+                    title='Ultra Balls'
+                    className='ml-4'
+                    src={Ultraball}
+                  ></img>
+                  <span className='ml-1'>{user.ultra_balls}</span>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+          </PokeRotContainer>
 
-            <Nav.Item>
-              <Nav.Link
-                active={ref === '#/battles'}
-                onClick={() => this.changeRef('#/battles')}
-                className='navLink'
-                href='#/battles'
-              >
-                Batalhas
-              </Nav.Link>
-            </Nav.Item>
+          <Container>
+            <Nav fill variant='tabs' defaultActiveKey='#/' justify>
+              <Nav.Item>
+                <Nav.Link
+                  active={ref === '#/'}
+                  onClick={() => this.changeRef('#/')}
+                  className='navLink'
+                  href='#/'
+                >
+                  Pokémons
+                </Nav.Link>
+              </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                active={ref === '#/test'}
-                onClick={() => this.changeRef('#/test')}
-                className='navLink'
-                href='#/gyms'
-              >
-                Ginásios
-              </Nav.Link>
-            </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  active={ref === '#/battles'}
+                  onClick={() => this.changeRef('#/battles')}
+                  className='navLink'
+                  href='#/battles'
+                >
+                  Batalhas
+                </Nav.Link>
+              </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                active={ref === '#/setup'}
-                onClick={() => this.changeRef('#/setup')}
-                className='navLink'
-                href='#/setup'
-              >
-                Setup
-              </Nav.Link>
-            </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  active={ref === '#/test'}
+                  onClick={() => this.changeRef('#/test')}
+                  className='navLink'
+                  href='#/gyms'
+                >
+                  Ginásios
+                </Nav.Link>
+              </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                active={ref === '#/casual'}
-                onClick={() => this.changeRef('#/casual')}
-                className='navLink'
-                href='#/casual'
-              >
-                Casual
-              </Nav.Link>
-            </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  active={ref === '#/setup'}
+                  onClick={() => this.changeRef('#/setup')}
+                  className='navLink'
+                  href='#/setup'
+                >
+                  Setup
+                </Nav.Link>
+              </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                active={ref === '#/shop'}
-                onClick={() => this.changeRef('#/shop')}
-                className='navLink'
-                href='#/shop'
-              >
-                Shop
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Container>
-      </>
-    );
+              <Nav.Item>
+                <Nav.Link
+                  active={ref === '#/casual'}
+                  onClick={() => this.changeRef('#/casual')}
+                  className='navLink'
+                  href='#/casual'
+                >
+                  Casual
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item>
+                <Nav.Link
+                  active={ref === '#/shop'}
+                  onClick={() => this.changeRef('#/shop')}
+                  className='navLink'
+                  href='#/shop'
+                >
+                  Shop
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Container>
+        </>
+      );
+    } else {
+      return <button onClick={() => console.log(error)}></button>;
+    }
   }
 }
 
 const mapStateToProps = (state) => ({
   auth: state.twitchAuth.auth,
+  error: state.twitchAuth.error,
   user: state.user.user,
   isUserLoading: state.user.isLoading,
 });

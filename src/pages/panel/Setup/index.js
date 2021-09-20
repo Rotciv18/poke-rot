@@ -69,7 +69,7 @@ class Setup extends Component {
     const { generateCode } = this.state;
     const indexes = [0, 1, 2, 3, 4, 5];
 
-    return isLoading ? (
+    return isLoading || !pokemons ? (
       <Spinner
         as='span'
         animation='grow'
@@ -112,11 +112,10 @@ class Setup extends Component {
             )
           )}
         </Row>
-        <CopyToClipboard text={generatePokemonShowdownCode(pokemons).replace(',', '')}>
-          <Button
-            size='sm'
-            className='w-75'
-          >
+        <CopyToClipboard
+          text={generatePokemonShowdownCode(pokemons).replace(',', '')}
+        >
+          <Button size='sm' className='w-75'>
             Copiar Código de Pokemon Showdown
           </Button>
         </CopyToClipboard>

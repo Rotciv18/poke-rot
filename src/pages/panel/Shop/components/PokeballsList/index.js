@@ -59,7 +59,7 @@ class PokeballsList extends Component {
     const cost = pokeballsList.reduce((previous, current) => {
       return previous.price
         ? previous.price * this.state[previous.name] +
-        current.price * this.state[current.name]
+            current.price * this.state[current.name]
         : current.price * this.state[current.name] + previous;
     });
 
@@ -97,7 +97,7 @@ class PokeballsList extends Component {
     this.setState({
       pokeballs: 0,
       greatballs: 0,
-      ultraballs: 0
+      ultraballs: 0,
     });
   }
 
@@ -110,7 +110,7 @@ class PokeballsList extends Component {
       </LoadingContainer>
     ) : (
       <Container>
-        <Row className='p-4 d-flex justify-content-between'>
+        <Row className='pl-4 pr-4 pt-4 d-flex justify-content-between'>
           {pokeballsList.map((pokeball) => (
             <div
               key={pokeball.id}
@@ -176,6 +176,10 @@ class PokeballsList extends Component {
             </div>
           ))}
         </Row>
+        <div className='text-center text-muted fs-10'>
+          Use-as para capturar um pokemon selvagem quando ele surgir, digitando
+          "!ball", "!great" ou "!ultra" e o nome do pokemon!
+        </div>
         <div className='buyButtonContainer'>
           <Button
             disabled={!cost}
@@ -195,7 +199,7 @@ class PokeballsList extends Component {
             </div>
           )}
         </div>
-      </Container >
+      </Container>
     );
   }
 }
