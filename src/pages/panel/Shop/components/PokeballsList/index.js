@@ -110,7 +110,7 @@ class PokeballsList extends Component {
       </LoadingContainer>
     ) : (
       <Container>
-        <Row className='pl-4 pr-4 pt-4 d-flex justify-content-between'>
+        <div className='pt-4 d-flex justify-content-around'>
           {pokeballsList.map((pokeball) => (
             <div
               key={pokeball.id}
@@ -175,7 +175,7 @@ class PokeballsList extends Component {
               </div>
             </div>
           ))}
-        </Row>
+        </div>
         <div className='text-center text-muted fs-10'>
           Use-as para capturar um pokemon selvagem quando ele surgir, digitando
           "!ball", "!great" ou "!ultra" e o nome do pokemon!

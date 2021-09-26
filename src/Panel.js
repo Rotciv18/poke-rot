@@ -15,7 +15,7 @@ ReactDOM.render(
     <HashRouter>
       <GlobalStyles />
       <Header />
-      <PanelRoutes/>
+      <PanelRoutes />
     </HashRouter>
   </Provider>,
   document.getElementById("root")

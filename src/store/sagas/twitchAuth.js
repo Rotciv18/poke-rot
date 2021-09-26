@@ -11,7 +11,6 @@ function* getAuth(action) {
   }
   const auth = new Authentication();
   auth.setToken(action.token, action.userId);
-  localStorage.setItem('token', action.token);
 
   yield put(AuthActions.getAuthSuccess(auth));
   yield put(UserActions.getUserRequest());

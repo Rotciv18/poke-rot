@@ -30,4 +30,8 @@ export const PokeRotContainer = styled.div`
       color: #0000ff;
     }
   }
+
+  .header-item-container {
+    margin-right: 12px;
+  }
 `;
