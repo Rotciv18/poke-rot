@@ -5,7 +5,7 @@ import Greatball from '../../images/greatball.png';
 import Ultraball from '../../images/ultraball.png';
 import PokePoints from '../../images/pokepoints.png';
 import { Nav } from 'react-bootstrap';
-import { Container, PokeRotContainer, HeaderItemsContainer } from './styles';
+import { Container, PokeRotContainer } from './styles';
 
 import capitalize from '../../helpers/capitalize';
 

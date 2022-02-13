@@ -13,6 +13,12 @@ export const Container = styled.div`
       background-color: #0088ff;
     }
   }
+
+  .no-pokemons {
+    height: 300px;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const LoadingContainer = styled.div`
