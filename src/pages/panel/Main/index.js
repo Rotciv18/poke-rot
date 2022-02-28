@@ -5,7 +5,6 @@ import { Container, LoadingContainer } from './style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as PokemonsActions } from '../../../store/ducks/pokemons';
-import { Creators as UserActions } from '../../../store/ducks/user';
 import PokemonCard from './components/PokemonCard';
 
 class Main extends Component {
@@ -14,71 +13,47 @@ class Main extends Component {
   }
 
   getPokemons() {
-    const { auth, getPokemonsRequest, getUserRequest } = this.props;
-
-    if (auth) {
-      getPokemonsRequest();
-      getUserRequest();
-    } else {
-      setTimeout(() => this.getPokemons(), 200);
-    }
+    const { getPokemonsRequest } = this.props;
+    getPokemonsRequest();
   }
 
   render() {
-    const { isLoading, pokemons, error } = this.props;
-    if (!error) {
-      return isLoading ? (
-        <LoadingContainer className='d-flex justify-content-center align-items-center'>
-          <Spinner animation='border' role='status' />
-        </LoadingContainer>
-      ) : (
-        <Container>
-          {pokemons.length > 0 ? (
-            <Row className='p-4 d-flex justify-content-between'>
-              {pokemons.map((pokemon) => (
-                <PokemonCard
-                  key={pokemon.id}
-                  pokemon={pokemon}
-                  history={this.props.history}
-                />
-              ))}
-            </Row>
-          ) : (
-            <div className='no-pokemons'>
-              <h5 className='text-center text-muted '>
-                Você ainda não tem nenhum pokémon. Adquira algum comprando na
-                Stream Avatars, ou capturando durante a stream
-              </h5>
-            </div>
-          )}
-        </Container>
-      );
-    } else {
-      return (
-        <>
-          <h1 className='text-center'>Não conseguimos carregar seus dados</h1>
-          <h6 className='text-center'>
-            É novo por aqui? Aguarde pelo menos 5 minutos e tente recarregar a
-            página para que seu cadastro seja feito
-          </h6>
-          <h6 className='text-center mt-4'>
-            Procure desativar quaisquer bloqueadores de anúncio no seu
-            navegador, por favor
-          </h6>
-        </>
-      );
-    }
+    const { isLoading, pokemons } = this.props;
+    return isLoading ? (
+      <LoadingContainer className='d-flex justify-content-center align-items-center'>
+        <Spinner animation='border' role='status' />
+      </LoadingContainer>
+    ) : (
+      <Container>
+        {pokemons.length > 0 ? (
+          <Row className='p-4 d-flex justify-content-between'>
+            {pokemons.map((pokemon) => (
+              <PokemonCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                history={this.props.history}
+              />
+            ))}
+          </Row>
+        ) : (
+          <div className='no-pokemons'>
+            <h5 className='text-center text-muted '>
+              Você ainda não tem nenhum pokémon. Adquira algum comprando na
+              Stream Avatars, ou capturando durante a stream
+            </h5>
+          </div>
+        )}
+      </Container>
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
   pokemons: state.pokemons.pokemonList,
   isLoading: state.pokemons.isLoading,
-  error: state.pokemons.error,
-  auth: state.twitchAuth.auth,
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ ...PokemonsActions, ...UserActions }, dispatch);
+  bindActionCreators(PokemonsActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

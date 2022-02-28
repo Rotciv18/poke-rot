@@ -8,7 +8,8 @@ export const { Types, Creators } = createActions({
 
 const INITIAL_STATE = {
   user: null,
-  isLoading: true
+  isLoading: true,
+  error: false
 };
 
 const getUserRequest = (state = INITIAL_STATE) => ({
@@ -24,7 +25,8 @@ const getUserSuccess = (state = INITIAL_STATE, action) => ({
 
 const getUserFailure = (state = INITIAL_STATE) => ({
   ...state,
-  isLoading: false
+  isLoading: false,
+  error: true
 });
 
 export default createReducer(INITIAL_STATE, {

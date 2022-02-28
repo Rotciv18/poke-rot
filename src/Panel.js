@@ -4,18 +4,16 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 
-import PanelRoutes from './routes/panel.js';
 import ReactDOM from "react-dom";
-import Header from './components/Header';
 import GlobalStyles from './styles/globalStyles';
+import UserLoader from './components/UserLoader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
       <GlobalStyles />
-      <Header />
-      <PanelRoutes />
+      <UserLoader />
     </HashRouter>
   </Provider>,
   document.getElementById("root")
