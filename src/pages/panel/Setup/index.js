@@ -30,7 +30,7 @@ class Setup extends Component {
   hasOneString(hasOne) {
     switch (hasOne) {
       case 'battle_schedule':
-        return 'Você não pode editar setup tendo batalhas marcadas!';
+        return 'Você não pode editar setup tendo batalhas marcadas em menos de 5 dias!';
 
       case 'battle_invitation':
         return 'Você não pode editar setup tendo desafios pendentes!';

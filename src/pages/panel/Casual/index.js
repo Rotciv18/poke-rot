@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as AvailableBattleActions } from '../../../store/ducks/availableBattles';
+import { Creators as SetupActions } from '../../../store/ducks/setup';
 
 import capitalize from '../../../helpers/capitalize';
 
@@ -32,6 +33,13 @@ const styles = (theme) => {
 class Casual extends Component {
   componentDidMount() {
     this.getAvailableBattleUsers();
+    this.getSetup();
+  }
+
+  getSetup() {
+    const { getSetupRequest } = this.props;
+
+    getSetupRequest();
   }
 
   getAvailableBattleUsers() {
@@ -45,49 +53,73 @@ class Casual extends Component {
   }
 
   render() {
-    const { classes, availableBattleUsers, isLoading } = this.props;
-    return isLoading ? (
-      <LoadingContainer className='d-flex justify-content-center align-items-center'>
-        <Spinner animation='border' role='status' />
-      </LoadingContainer>
-    ) : availableBattleUsers.length > 0 ? (
-      <List dense className={classes.root}>
-        {availableBattleUsers.map((user) => {
-          const labelId = `checkbox-list-secondary-label-${user.id}`;
-          return (
-            <ListItem key={labelId} button>
-              <ListItemAvatar>
-                <Avatar src={user.img_url} />
-              </ListItemAvatar>
-              <ListItemText id={labelId} primary={capitalize(user.username)} />
-              <ListItemSecondaryAction>
-                <Button
-                  href={`#/casual/details?id=${user.id}&username=${user.username}&challenge_type=casual`}
-                >
-                  Batalhar
-                </Button>
-              </ListItemSecondaryAction>
-            </ListItem>
-          );
-        })}
-      </List>
-    ) : (
-      <div style={{height: '300px'}} className="d-flex align-items-center flex-column justify-content-center">
-        <h5 className="text-muted text-center">Não encontramos ninguém para você batalhar</h5>
-        <h5 className="text-muted text-center">Certifique-se de que você está com pelo menos 1 pokémon em seu setup e ele seja lvl 5 ou maior</h5>
-      </div>
-    );
+    const { classes, availableBattleUsers, isAvailableBattlesLoading, isSetupLoading, pokemonSetupList } = this.props;
+    let casualBattleError;
+
+    if (pokemonSetupList && pokemonSetupList.length < 1) {
+      casualBattleError = 'Você não tem pokemons em seu Setup para batalhar';
+    }
+
+    const isLoading = isAvailableBattlesLoading || isSetupLoading;
+
+    if (isLoading) {
+      return (
+        <LoadingContainer className='d-flex justify-content-center align-items-center'>
+          <Spinner animation='border' role='status' />
+        </LoadingContainer>
+      );
+    } else if (availableBattleUsers.length < 1) {
+      return (
+        <div style={{ height: '300px' }} className="d-flex align-items-center flex-column justify-content-center">
+          <h5 className="text-muted text-center">Não encontramos ninguém para você batalhar</h5>
+          <h5 className="text-muted text-center">Talvez você esteja muito mais forte ou muito mais fraco que os outros...</h5>
+          <h5 className="text-muted text-center">Certifique-se de que você está com pelo menos 1 pokémon em seu setup e ele seja lvl 5 ou maior</h5>
+        </div>
+      );
+    } else {
+      return (
+        <List dense className={classes.root}>
+          {availableBattleUsers.map((user) => {
+            const labelId = `checkbox-list-secondary-label-${user.id}`;
+            return (
+              <ListItem key={labelId} button>
+                <ListItemAvatar>
+                  <Avatar src={user.img_url} />
+                </ListItemAvatar>
+                <ListItemText id={labelId} primary={capitalize(user.username)} />
+                <ListItemSecondaryAction>
+                  <div
+                    title={casualBattleError}
+                    className=""
+                  >
+                    <Button
+                      href={`#/casual/details?id=${user.id}&username=${user.username}&challenge_type=casual`}
+                      className="button-tooltip"
+                      disabled={casualBattleError}
+                    >
+                      Batalhar!
+                    </Button>
+                  </div>
+                </ListItemSecondaryAction>
+              </ListItem>
+            );
+          })}
+        </List>
+      );
+    }
   }
 }
 
 const mapStateToProps = (state) => ({
   availableBattleUsers: state.availableBattles.availableBattleUsers,
   user: state.user.user,
-  isLoading: state.availableBattles.isLoading,
+  isAvailableBattlesLoading: state.availableBattles.isLoading,
+  pokemonSetupList: state.setup.pokemonList,
+  isSetupLoading: state.setup.isLoading
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(AvailableBattleActions, dispatch);
+  bindActionCreators({ ...AvailableBattleActions, ...SetupActions }, dispatch);
 
 export default connect(
   mapStateToProps,

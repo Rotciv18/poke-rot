@@ -73,7 +73,6 @@ class UserLoader extends Component {
           <Button onClick={() => this.requestIdShare()}>
             Clica aqui para conceder permissões
           </Button>
-          <Button onClick={() => console.log(isLinked)}>oie</Button>
         </div>
       );
     } else if (!user) {
