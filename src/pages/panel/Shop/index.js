@@ -12,10 +12,9 @@ import StonesList from './components/StonesList';
 
 import { Container } from './style';
 
-const pokeballImg =
-  'https://www.clipartmax.com/png/full/129-1298222_%C2%A0-pokeball-png.png';
-const tmImg = 'https://pokemon3d.net/wiki/images/7/7a/TMbig.png';
-const stoneImg = 'https://www.pngkey.com/png/full/30-302848_stone-png.png';
+import Pokeball from '../../../images/pokeball.png';
+import Tm from '../../../images/tm.png';
+import Stone from '../../../images/stone.png';
 
 class Shop extends Component {
   state = {
@@ -65,19 +64,19 @@ class Shop extends Component {
         >
           <StyledMenuItem onClick={() => this.handleSelectMenu('Pokeballs')}>
             <ListItemIcon>
-              <IconItem src={pokeballImg} />
+              <IconItem src={Pokeball} />
             </ListItemIcon>
             <ListItemText primary='Pokeballs' />
           </StyledMenuItem>
           <StyledMenuItem onClick={() => this.handleSelectMenu('TMs e HMs')}>
             <ListItemIcon>
-              <IconItem src={tmImg} />
+              <IconItem src={Tm} />
             </ListItemIcon>
             <ListItemText primary='TMs e HMs' />
           </StyledMenuItem>
           <StyledMenuItem onClick={() => this.handleSelectMenu('Stones')}>
             <ListItemIcon>
-              <IconItem src={stoneImg} />
+              <IconItem src={Stone} />
             </ListItemIcon>
             <ListItemText primary='Stones' />
           </StyledMenuItem>

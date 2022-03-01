@@ -12,7 +12,7 @@ import PokePoints from '../../../../../images/pokepoints.png';
 
 import { Spinner } from 'react-bootstrap';
 import { LoadingContainer } from '../../../Main/style';
-import { Row, Card, Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { IconButton } from '@material-ui/core';
 import { Remove, Add } from '@material-ui/icons';
 import { Container } from './style';

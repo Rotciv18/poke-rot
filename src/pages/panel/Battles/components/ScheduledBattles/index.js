@@ -7,12 +7,13 @@ import capitalize from '../../../../../helpers/capitalize';
 import positionNameString from '../../../../../helpers/positionNameString';
 
 import { Table } from 'react-bootstrap';
+import { Avatar } from '@material-ui/core';
 import { Container } from './style';
 
-function ScheduledBattles( {schedules} ) {
+function ScheduledBattles({ schedules }) {
   return (
     <Container>
-      <Table striped bordered hover size="sm" variant="dark">
+      <Table striped bordered hover size="sm" variant="dark" style={{ backgroundColor: '#3c3f43' }}>
         <thead>
           <tr>
             <th>Desafiante</th>
@@ -24,13 +25,17 @@ function ScheduledBattles( {schedules} ) {
         {schedules.map(schedule => (
           <tbody key={schedule.id}>
             <tr>
-              <td>{capitalize(schedule.challenger.username)}</td>
-              <td>{capitalize(schedule.challenged.username)}</td>
+              <td align="center">
+                <Avatar title={schedule.challenger.username} src={schedule.challenger.img_url} />
+              </td>
+              <td align="center">
+                <Avatar title={schedule.challenged.username} src={schedule.challenged.img_url} />
+              </td>
               {schedule.challenge_type === 'casual'
-                ? <td>Casual</td>
-                : <td>{positionNameString(schedule.position)}</td>
+                ? <td align="center">Casual</td>
+                : <td align="center">{positionNameString(schedule.position)}</td>
               }
-              <td>{format(parseISO(schedule.battle_date), 'dd/MM')} {capitalize(format(parseISO(schedule.battle_date), 'iii', { locale: ptBR }))}</td>
+              <td align="center">{format(parseISO(schedule.battle_date), 'dd/MM')} {capitalize(format(parseISO(schedule.battle_date), 'iii', { locale: ptBR }))}</td>
             </tr>
           </tbody>
         ))}

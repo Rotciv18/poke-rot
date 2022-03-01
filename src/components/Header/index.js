@@ -11,9 +11,8 @@ import capitalize from '../../helpers/capitalize';
 
 import { connect } from 'react-redux';
 
-const duelTicketImg =
-  'https://www.clipartmax.com/png/full/91-918286_rectangle-clipart.png';
-const badgeImg = 'https://www.pikpng.com/pngl/b/31-313648_boulder-png.png';
+import DuelTicket from '../../images/duel_ticket.png';
+import Badge from '../../images/badge.png';
 
 class Header extends Component {
   state = {
@@ -50,12 +49,12 @@ class Header extends Component {
                   <img
                     title='Duel Tickets'
                     className='ml-4'
-                    src={duelTicketImg}
+                    src={DuelTicket}
                   ></img>
                   <span className='ml-1'>{user.duel_tickets}</span>
                 </div>
                 <div className='d-flex flex-row align-items-center header-item-container'>
-                  <img title='Badges' className='ml-4' src={badgeImg}></img>
+                  <img title='Badges' className='ml-4' src={Badge}></img>
                   <span className='ml-1'>{user.badges}</span>
                 </div>
               </div>

@@ -55,11 +55,15 @@ class BattleInvitation extends Component {
         </thead>
         <tbody>
           <tr>
-            <td>{capitalize(invitation.challenger.username)}</td>
-            <td>{capitalize(invitation.challenged.username)}</td>
+            <td align="center">
+              <Avatar title={schedule.challenger.username} src={schedule.challenger.img_url} />
+            </td>
+            <td align="center">
+              <Avatar title={schedule.challenged.username} src={schedule.challenged.img_url} />
+            </td>
             {invitation.challenge_type === 'casual'
-              ? <td>Casual</td>
-              : <td>{positionNameString(invitation.position)}</td>
+              ? <td align="center">Casual</td>
+              : <td align="center">{positionNameString(invitation.position)}</td>
             }
           </tr>
         </tbody>

@@ -12,6 +12,10 @@ import { LoadingContainer } from '../../../Main/style';
 import { Row, Card } from 'react-bootstrap';
 import { Container } from './style';
 
+import WaterStone from '../../../../../images/water_stone.png';
+import ThunderStone from '../../../../../images/thunder_stone.png';
+import FireStone from '../../../../../images/fire_stone.png';
+
 class StonesList extends Component {
   componentDidMount() {
     this.getStones();
@@ -27,6 +31,22 @@ class StonesList extends Component {
     const { history } = this.props;
 
     history.push(`/pokemons/evolve?stone=${stone}&stoneId=${stoneId}`);
+  }
+
+  getStoneImage(stoneName) {
+    switch (stoneName) {
+      case 'water-stone':
+        return WaterStone;
+    
+      case 'fire-stone':
+        return FireStone;
+
+      case 'thunder-stone':
+        return ThunderStone;
+
+      default:
+        return null;
+    }
   }
   render() {
     const { isLoading, stonesList } = this.props;
@@ -66,7 +86,7 @@ class StonesList extends Component {
               >
                 <img
                   className='itemImg'
-                  src={stone.img_url}
+                  src={this.getStoneImage(stone.name)}
                 ></img>
                 <span className='text-center'>{capitalize(stone.name.replace('-stone', ''))}</span>
                 <div className='d-flex align-items-center'>
