@@ -45,7 +45,7 @@ class BattleInvitation extends Component {
     const { open, selectedDate } = this.state;
     const { invitation, user } = this.props;
     return (<Container>
-      <Table striped bordered hover size="sm" variant="dark">
+      <Table striped bordered hover size="sm" variant="dark" style={{ backgroundColor: '#3c3f43' }}>
         <thead>
           <tr>
             <th>Desafiante</th>
