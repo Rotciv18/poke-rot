@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { Creators as AvailableBattleActions } from '../../../store/ducks/availableBattles';
 import { Creators as SetupActions } from '../../../store/ducks/setup';
 
-import capitalize from '../../../helpers/capitalize';
-
 import { Spinner } from 'react-bootstrap';
 import { LoadingContainer } from '../Main/style';
 import { Button } from 'react-bootstrap';
@@ -88,14 +86,14 @@ class Casual extends Component {
                 <ListItemAvatar>
                   <Avatar src={user.img_url} />
                 </ListItemAvatar>
-                <ListItemText id={labelId} primary={capitalize(user.username)} />
+                <ListItemText id={labelId} primary={user.display_name} />
                 <ListItemSecondaryAction>
                   <div
                     title={casualBattleError}
                     className=""
                   >
                     <Button
-                      href={`#/casual/details?id=${user.id}&username=${user.username}&challenge_type=casual`}
+                      href={`#/casual/details?id=${user.id}&display_name=${user.display_name}&challenge_type=casual`}
                       className="button-tooltip"
                       disabled={casualBattleError}
                     >

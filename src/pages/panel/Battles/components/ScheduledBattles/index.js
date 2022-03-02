@@ -26,10 +26,10 @@ function ScheduledBattles({ schedules }) {
           <tbody key={schedule.id}>
             <tr>
               <td align="center">
-                <Avatar title={schedule.challenger.username} src={schedule.challenger.img_url} />
+                <Avatar title={schedule.challenger.display_name} src={schedule.challenger.img_url} />
               </td>
               <td align="center">
-                <Avatar title={schedule.challenged.username} src={schedule.challenged.img_url} />
+                <Avatar title={schedule.challenged.display_name} src={schedule.challenged.img_url} />
               </td>
               {schedule.challenge_type === 'casual'
                 ? <td align="center">Casual</td>

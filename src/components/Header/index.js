@@ -35,7 +35,7 @@ class Header extends Component {
             <a onClick={() => this.changeRef('#/')} href='#/'>
               Poke-Rot
             </a>
-            {user ? <span>{capitalize(user.username)}</span> : ''}
+            {user ? <span>{user.display_name}</span> : ''}
           </div>
 
           {user ? (

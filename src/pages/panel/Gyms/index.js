@@ -85,7 +85,7 @@ class Gym extends Component {
                   <ListItemText
                     className="listItemText"
                     primary={positionNameString(position)}
-                    secondary={position.user ? capitalize(position.user.username) : 'Sem Líder'}
+                    secondary={position.user ? position.user.display_name : 'Sem Líder'}
                   />
                   <SetupContainer>
                     <Row xs={2} md={2} lg={2} className={position.user ? "border" : null}>
@@ -100,7 +100,7 @@ class Gym extends Component {
                   </SetupContainer>
                   {position.user && position.user.id !== user.id
                     ? <Button
-                      href={`#/casual/details?id=${position.user.id}&username=${position.user.username}&challenge_type=position&position_id=${position.id}`}
+                      href={`#/casual/details?id=${position.user.id}&display_name=${position.user.display_name}&challenge_type=position&position_id=${position.id}`}
                       size="sm">Desafiar</Button>
                     : null}
                   {!position.user ? <Button onClick={() => this.handleGetPositionClick(position.id)} size="sm">Tomar</Button> : null}

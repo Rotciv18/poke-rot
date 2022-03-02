@@ -3,8 +3,8 @@ import store from '../store';
 
 const fetchClient = () => {
   const defaultOptions = {
-    baseURL: 'https://pokerot.com',
-    // baseURL: 'http://localhost:3333',
+    // baseURL: 'https://pokerot.com',
+    baseURL: 'http://localhost:3333',
     method: 'get',
     headers: {
       'Content-Type': 'application/json',

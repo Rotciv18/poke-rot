@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Table } from 'react-bootstrap';
 
-import capitalize from '../../../../../helpers/capitalize';
 import positionNameString from '../../../../../helpers/positionNameString';
 
+import { Avatar } from '@material-ui/core';
 import { Container } from './style';
 
 function SentInvitations({ invitations }) {
@@ -22,10 +22,10 @@ function SentInvitations({ invitations }) {
           <tbody key={invitation.id}>
             <tr>
               <td align="center">
-                <Avatar title={schedule.challenger.username} src={schedule.challenger.img_url} />
+                <Avatar title={invitation.challenger.display_name} src={invitation.challenger.img_url} />
               </td>
               <td align="center">
-                <Avatar title={schedule.challenged.username} src={schedule.challenged.img_url} />
+                <Avatar title={invitation.challenged.display_name} src={invitation.challenged.img_url} />
               </td>
               {invitation.challenge_type === 'casual'
                 ? <td align="center">Casual</td>

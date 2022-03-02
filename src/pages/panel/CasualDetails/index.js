@@ -71,7 +71,7 @@ class CasualDetails extends Component {
 
     return (
       <Container>
-        <span>Marcar uma batalha contra {capitalize(params.get('username'))}</span>
+        <span>Marcar uma batalha contra {params.get('display_name')}</span>
         <span>Você irá gastar 1 <span className="text-warning">
           {params.get('challenge_type') === 'casual' ? 'Duel Ticket' : 'Badge'}</span></span>
         <hr className="w-100"></hr>

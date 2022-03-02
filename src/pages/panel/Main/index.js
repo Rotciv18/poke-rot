@@ -5,16 +5,24 @@ import { Container, LoadingContainer } from './style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as PokemonsActions } from '../../../store/ducks/pokemons';
+import { Creators as UserActions } from '../../../store/ducks/user';
 import PokemonCard from './components/PokemonCard';
 
 class Main extends Component {
   componentDidMount() {
     this.getPokemons();
+    this.getUser();
   }
 
   getPokemons() {
     const { getPokemonsRequest } = this.props;
     getPokemonsRequest();
+  }
+
+  getUser() {
+    const { getUserRequest } = this.props;
+
+    getUserRequest();
   }
 
   render() {
@@ -54,6 +62,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(PokemonsActions, dispatch);
+  bindActionCreators({...PokemonsActions, ...UserActions}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

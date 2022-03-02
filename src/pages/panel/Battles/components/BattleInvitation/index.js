@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Table, Collapse, Row, Col, Button } from 'react-bootstrap';
 import { CaretDownFill, CaretUpFill } from 'react-bootstrap-icons';
+import { Avatar } from '@material-ui/core';
 
 import { Container } from './style';
 
@@ -56,10 +57,10 @@ class BattleInvitation extends Component {
         <tbody>
           <tr>
             <td align="center">
-              <Avatar title={schedule.challenger.username} src={schedule.challenger.img_url} />
+              <Avatar title={invitation.challenger.display_name} src={invitation.challenger.img_url} />
             </td>
             <td align="center">
-              <Avatar title={schedule.challenged.username} src={schedule.challenged.img_url} />
+              <Avatar title={invitation.challenged.display_name} src={invitation.challenged.img_url} />
             </td>
             {invitation.challenge_type === 'casual'
               ? <td align="center">Casual</td>
