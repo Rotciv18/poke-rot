@@ -14,18 +14,20 @@ const INITIAL_STATE = {
 
 const getUserRequest = (state = INITIAL_STATE) => ({
   ...state,
-  isLoading: true
+  isLoading: true,
 });
 
 const getUserSuccess = (state = INITIAL_STATE, action) => ({
   ...state,
   user: action.user,
+  error: false,
   isLoading: false
 });
 
 const getUserFailure = (state = INITIAL_STATE) => ({
   ...state,
   isLoading: false,
+  user: {},
   error: true
 });
 
