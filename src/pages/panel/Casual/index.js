@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import sumArrayProperties from '../../../helpers/sumArrayProperties';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as AvailableBattleActions } from '../../../store/ducks/availableBattles';
@@ -56,7 +58,7 @@ class Casual extends Component {
 
     if (pokemonSetupList && pokemonSetupList.length < 1) {
       casualBattleError = 'Você não tem pokemons em seu Setup para batalhar';
-    } else if (user.level < 5) {
+    } else if (sumArrayProperties(pokemonSetupList, 'level') < 10) {
       casualBattleError = 'Você está muito fraco ainda para batalhar alguém...';
     }
 

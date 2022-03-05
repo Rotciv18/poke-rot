@@ -24,6 +24,7 @@ function* levelUpPokemon(action) {
     yield put(UserActions.getUserRequest());
 
   } catch (error) {
+    console.log(error.response.data);
 
     if (error.response.data.hasOne) {
       yield put(PokemonActions.levelUpPokemonFailure({ hasOne: error.response.data.hasOne }));
@@ -37,7 +38,7 @@ function* levelUpPokemon(action) {
 
       case 'Need to choose a move to delete':
         const newMove = error.response.data.newMove ? error.response.data.newMove.name : error.response.data.newEvolutionMove.name;
-        yield put(PokemonActions.levelUpPokemonFailure({ forgetToLearn: newMove }));
+        yield put(PokemonActions.levelUpPokemonFailure({ forgetToLearn: newMove }, error.response.data.pokemon));
         break;
 
       case "Can't level up pokemon that's in position Setup":

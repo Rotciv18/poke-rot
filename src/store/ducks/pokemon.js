@@ -6,7 +6,7 @@ export const { Types, Creators } = createActions({
   getPokemonFailure: [],
   levelUpPokemonRequest: ['pokemonId', 'deleteMove'],
   levelUpPokemonSuccess: ['levelUpData'],
-  levelUpPokemonFailure: ['error'],
+  levelUpPokemonFailure: ['error', 'pokemon'],
   evolvePokemonRequest: ['pokemonId', 'stoneId', 'params', 'history'],
   evolvePokemonSuccess: [],
   evolvePokemonFailure: ['error'],
@@ -64,6 +64,7 @@ const levelUpPokemonSuccess = (state = INITIAL_STATE, action) => ({
 const levelUpPokemonFailure = (state = INITIAL_STATE, action) => ({
   ...state,
   isLoading: false,
+  pokemonDetails: action.pokemon ? action.pokemon : state.pokemonDetails,
   levelUpError: action.error
 });
 

@@ -78,14 +78,6 @@ class PokemonDetails extends Component {
           </Button>
         )}
 
-        {levelUpData.newLevel ? (
-          <WarningMessage
-            message={`Seu ${capitalize(pokemon.name)} avançou para o level ${
-              levelUpData.newLevel
-            }!`}
-          ></WarningMessage>
-        ) : null}
-
         {levelUpData.evolvedTo ? (
           <WarningMessage
             message={`Seu ${capitalize(
@@ -94,11 +86,18 @@ class PokemonDetails extends Component {
           ></WarningMessage>
         ) : null}
 
+        {levelUpData.newLevel ? (
+          <WarningMessage
+            message={`Seu ${capitalize(pokemon.name)} avançou para o level ${levelUpData.newLevel
+              }!`}
+          ></WarningMessage>
+        ) : null}
+
+
         {levelUpData.learnedMove ? (
           <WarningMessage
-            message={`${capitalize(pokemon.name)} aprendeu ${
-              levelUpData.learnedMove
-            }!`}
+            message={`${capitalize(pokemon.name)} aprendeu ${levelUpData.learnedMove
+              }!`}
           ></WarningMessage>
         ) : null}
 
