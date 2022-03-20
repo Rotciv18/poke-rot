@@ -1,0 +1,3 @@
+• Consertar imagens da parte SHOP->TMS
+• Consertar imagens da parte SHOP->STONES (Moon Stone)
+• Não permitir lvlup quando estiver lvl máximo

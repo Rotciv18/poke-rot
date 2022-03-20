@@ -15,6 +15,7 @@ import { Container } from './style';
 import WaterStone from '../../../../../images/water_stone.png';
 import ThunderStone from '../../../../../images/thunder_stone.png';
 import FireStone from '../../../../../images/fire_stone.png';
+import MoonStone from '../../../../../images/moon-stone.png';
 
 class StonesList extends Component {
   componentDidMount() {
@@ -43,6 +44,9 @@ class StonesList extends Component {
 
       case 'thunder-stone':
         return ThunderStone;
+
+      case 'moon-stone':
+        return MoonStone;
 
       default:
         return null;

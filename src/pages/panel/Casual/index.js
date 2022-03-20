@@ -53,12 +53,12 @@ class Casual extends Component {
   }
 
   render() {
-    const { classes, availableBattleUsers, isAvailableBattlesLoading, isSetupLoading, pokemonSetupList, user } = this.props;
+    const { classes, availableBattleUsers, isAvailableBattlesLoading, isSetupLoading, pokemonSetupList } = this.props;
     let casualBattleError;
 
-    if (pokemonSetupList && pokemonSetupList.length < 1) {
+    if (pokemonSetupList?.length < 1) {
       casualBattleError = 'Você não tem pokemons em seu Setup para batalhar';
-    } else if (sumArrayProperties(pokemonSetupList, 'level') < 10) {
+    } else if (pokemonSetupList && sumArrayProperties(pokemonSetupList, 'level') < 10) {
       casualBattleError = 'Você está muito fraco ainda para batalhar alguém...';
     }
 
