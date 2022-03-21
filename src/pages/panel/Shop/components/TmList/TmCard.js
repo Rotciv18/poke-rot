@@ -4,7 +4,7 @@ import PokePoints from '../../../../../images/pokepoints.png';
 import capitalize from '../../../../../helpers/capitalize';
 import { Card } from 'react-bootstrap';
 
-import Tm from '../../../../../images/Tm.png';
+import TM from '../../../../../images/TM.png';
 
 function TmList({ move, handleTmClick }) {
   return (
@@ -21,7 +21,7 @@ function TmList({ move, handleTmClick }) {
         paddingTop: '6px',
       }}
     >
-      <img className='itemImg' src={Tm}></img>
+      <img className='itemImg' src={TM}></img>
       <span className='text-center'>{capitalize(move.move_name)}</span>
       <div className='d-flex align-items-center'>
         <img className='pokePoints' title='PokePoints' src={PokePoints}></img>

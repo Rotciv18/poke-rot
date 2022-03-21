@@ -13,7 +13,7 @@ import StonesList from './components/StonesList';
 import { Container } from './style';
 
 import Pokeball from '../../../images/pokeball.png';
-import Tm from '../../../images/tm.png';
+import TM from '../../../images/TM.png';
 import Stone from '../../../images/stone.png';
 
 class Shop extends Component {
@@ -70,7 +70,7 @@ class Shop extends Component {
           </StyledMenuItem>
           <StyledMenuItem onClick={() => this.handleSelectMenu('TMs e HMs')}>
             <ListItemIcon>
-              <IconItem src={Tm} />
+              <IconItem src={TM} />
             </ListItemIcon>
             <ListItemText primary='TMs e HMs' />
           </StyledMenuItem>

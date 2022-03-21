@@ -78,13 +78,13 @@ class PokemonDetails extends Component {
           </Button>
         )}
 
-        {levelUpError.maxLevel ? null : (
+        {levelUpError.maxLevel ? (
           <WarningMessage
             color='red'
             bold={true}
             message={`Seu ${pokemon.name} já está no level máximo.`}
           ></WarningMessage>
-        )}
+        ) : null}
 
         {levelUpData.evolvedTo ? (
           <WarningMessage
